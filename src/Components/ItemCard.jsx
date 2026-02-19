@@ -16,7 +16,7 @@ const ItemCard = ({ item }) => {
   return (
     <div
       key={item.id}
-      className="bg-gradient-to-t from-white to-white/40 shadow-[1px_1px_5px_rgba(0,0,0,0.1)]  p-4 pt-5 h-fit relative rounded-2xl w-full"
+      className="bg-gradient-to-t from-white to-white/40 shadow-[1px_1px_5px_rgba(0,0,0,0.1)]  p-4 pt-5 h-fit relative rounded-2xl w-full mt-10"
     >
       <div className="absolute w-[150px] h-[150px] rounded-full left-[50%] translate-x-[-50%] -top-22">
         <img

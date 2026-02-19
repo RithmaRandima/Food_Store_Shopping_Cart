@@ -6,6 +6,7 @@ import "./App.css";
 import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
 import { ShopContextProvider } from "./context/Shop-context";
+import Footer from "./Components/Footer";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
+          <Footer />
         </Router>
       </ShopContextProvider>
     </div>

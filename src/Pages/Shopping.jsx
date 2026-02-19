@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import { itemList } from "../assets/ItemsData";
 import ItemCard from "../Components/ItemCard";
+import img1 from "../assets/img-3.PNG";
+import img2 from "../assets/about-dairy.png";
 
 const Shopping = () => {
   const [selected, setSelected] = useState("Vegetables");
   const btnCategories = ["Vegetables", "Fruits", "Dairy", "Bakery"];
   return (
-    <div className="-mt-1 py-5 pb-100">
+    <div className="relative -mt-1 py-5">
+      {/* img 01 */}
+      <div className="absolute w-[350px] h-[350px] bg-lack -right-10 -top-40">
+        <img src={img1} alt="" className="w-full h-full object-cover" />
+      </div>
+
+      {/* img 02 */}
+
+      <div className="absolute w-[170px] h-[150px] bg-lack right-40 top-10">
+        <img src={img2} alt="" className="w-full h-full object-cover" />
+      </div>
+
       {/* heading section */}
       <div className="flex flex-col">
         <h1 className="font-extrabold text-[40px] text-black text-center">
@@ -18,7 +31,7 @@ const Shopping = () => {
         </p>
 
         {/* button section */}
-        <div className="my-3 mb-7 pl-10">
+        <div className="my-3 pl-10">
           {btnCategories.map((category, index) => {
             return (
               <button
