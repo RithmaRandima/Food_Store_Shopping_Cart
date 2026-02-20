@@ -59,7 +59,6 @@ const ItemCard = ({ item }) => {
         >
           <TiShoppingCart className="text-[20px]" />{" "}
         </button>
-        {/* <IoMdAdd /> {cartItemAmount > 0 && <>({cartItemAmount})</>} */}
 
         {/* count */}
         {cartItemAmount > 0 && (

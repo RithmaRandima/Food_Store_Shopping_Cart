@@ -8,7 +8,11 @@ const About = () => {
     <div className=" mx-auto p-6 flex flex-col gap-6 text-white py-8 bg-gradient-to-b from-green-500 to-white rounded-b-full pb-20 pt-20 w-[90%]">
       <div className="grid grid-cols-1 md:gap-6 md:grid-cols-5 pb-2 md:pb-6 md:p-10 w-[80%] mx-auto">
         {aboutItemList.map((item) => (
-          <AboutCard img={item.img} name={item.name} />
+          <AboutCard
+            img={item.img}
+            name={item.name}
+            itemCount={item.itemCount}
+          />
         ))}
       </div>
 

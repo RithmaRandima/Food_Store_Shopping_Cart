@@ -1,7 +1,7 @@
 import React from "react";
 import { FaCircle, FaStar } from "react-icons/fa";
 
-const AboutCard = ({ img, name }) => {
+const AboutCard = ({ img, name, itemCount }) => {
   return (
     <div className="relative mx-auto pt-3">
       {/* img */}
@@ -13,7 +13,7 @@ const AboutCard = ({ img, name }) => {
         />
       </div>
       {/* box */}
-      <div className="w-[140px] h-[140px]  bg-gradient-to-b from-green-500 to-white pt-10">
+      <div className="w-[140px] h-[140px]  bg-gradient-to-b from-white/30 to-white rounded-[10px]  pt-10">
         {/* item details */}
         <div className=" mt-3 text-center relative">
           <h1 className="font-bold text-[18px] text-black">{name}</h1>
@@ -27,8 +27,8 @@ const AboutCard = ({ img, name }) => {
           <FaStar className="text-[13px] text-black" />
         </div>
 
-        <div className="bg-black w-fit p-1 text-[12px] font-bold absolute bottom-0 ">
-          <h1>123 items</h1>
+        <div className="bg-black w-fit p-1 text-[12px] font-bold absolute bottom-0 rounded-bl-[10px] rounded-tr-[10px]">
+          <h1>{itemCount} items</h1>
         </div>
       </div>
     </div>
