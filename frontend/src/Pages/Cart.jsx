@@ -1,42 +1,47 @@
 import React, { useContext } from "react";
-import { itemList } from "../assets/ItemsData";
 import ShopContext from "../context/Shop-context";
-import CartItem from "../Components/CartItem";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import EmptyCart from "../Components/EmptyCart";
+
+import CartItemContainer from "../Components/CartItemContainer";
+import CartTotalSection from "../Components/CartTotalSection";
 
 const Cart = () => {
-  const { cartItems, getTotalCartAmount } = useContext(ShopContext);
+  const { getTotalCartAmount } = useContext(ShopContext);
 
   const totalAmount = getTotalCartAmount();
 
-  const navigate = useNavigate();
   return (
-    <div className="">
-      <Navbar />
-      <div>
-        <h1>Your Cart items</h1>
+    <div>
+      <div className="fixed left-0 right-0 z-10">
+        <Navbar />
       </div>
-      {/* cart items */}
-      <div>
-        {itemList.map((item) => {
-          if (cartItems[item.id] !== 0) {
-            return <CartItem data={item} />;
-          }
-        })}
-      </div>
+
+      {/* Cart Page Title */}
+
       {/* checkput section */}
       {totalAmount ? (
         <div>
-          <p>Subtotal : ${totalAmount}</p>
-          <button onClick={() => navigate("/")}>Continue Shopping</button>
-          <button>Checkout</button>
+          <div className="py-7">
+            <h1 className="pt-11 pb-3 pl-15 font-extrabold text-[35px] border-b border-black/20">
+              My Cart
+            </h1>
+          </div>
+          <div className="flex pb-10">
+            <CartItemContainer />
+            <div className=" flex-2 relative w-full min-h-screen ">
+              <CartTotalSection />
+            </div>
+          </div>
         </div>
       ) : (
-        <h1>Your Cart is Empty</h1>
+        <EmptyCart />
+        // <h1>Your Cart is Empty</h1>
       )}
-      <Footer />
+      <div className="fixed left-0 right-0 bottom-0">
+        <Footer />
+      </div>
     </div>
   );
 };

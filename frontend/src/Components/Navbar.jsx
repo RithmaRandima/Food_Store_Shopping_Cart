@@ -25,10 +25,14 @@ const Navbar = () => {
         </a>
       </div>
       {/* cart section */}
-      <div className="flex gap-2 items-center">
-        <FaSearch className="text-[18px] text-green-600" />
+      <div className="flex gap-4 items-center">
+        <FaSearch
+          className="text-[20px] text-green-600
+           cursor-pointer
+        hover:scale-105 duration-150 transition-all"
+        />
         <Link to={"/cart"}>
-          <HiShoppingBag className="text-[25px] text-green-600" />
+          <HiShoppingBag className="text-[40px] text-green-600/90  hover:text-green-600 hover:scale-105 duration-150 transition-all" />
         </Link>
       </div>
     </div>
