@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/register");
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);

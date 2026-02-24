@@ -7,7 +7,7 @@ import {
 
 const registerRoute = express.Router();
 
-registerRoute.get("/register/", getAllRegisteredUsers);
+registerRoute.get("/all-users/", getAllRegisteredUsers);
 registerRoute.post("/register/", registerUser);
 registerRoute.post("/login/", loginUser);
 

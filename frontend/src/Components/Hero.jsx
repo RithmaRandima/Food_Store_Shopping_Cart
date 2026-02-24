@@ -13,7 +13,7 @@ const Hero = () => {
           Grocery
         </h1>
         <p className="font-bold mt-5">
-          Get the besr quality and most delicious grocery food in the world, you
+          Get the best quality and most delicious grocery food in the world, you
           can get the all from here
         </p>
         <button className="my-10 bg-green-600 text-[20px] text-white btn-primary border-0 rounded-l-none p-2 pr-10">

@@ -14,7 +14,7 @@ const Navbar = () => {
       </div>
       {/* middle nav */}
       <div className="flex">
-        <Link to={"/"} className="mx-5 font-semibold text-[17px]">
+        <Link to={"/home"} className="mx-5 font-semibold text-[17px]">
           Home
         </Link>
         <Link to={"/"} className="mx-5 font-semibold text-[17px]">
