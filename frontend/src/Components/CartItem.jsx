@@ -58,9 +58,11 @@ const CartItem = (props) => {
 
       {/* price section */}
       <div className=" flex-1">
-        <p className="font-extrabold text-green-500 text-[25px]">${newPrice}</p>
+        <p className="font-extrabold text-green-500 text-[25px]">
+          ${Number(newPrice.toFixed(2))}
+        </p>
         <p className="line-through text-gray-400 font-semibold ml-4">
-          ${oldPrice}
+          ${Number(oldPrice.toFixed(2))}
         </p>
       </div>
     </div>

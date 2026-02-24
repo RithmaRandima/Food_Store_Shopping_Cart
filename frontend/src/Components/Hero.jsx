@@ -1,6 +1,6 @@
 import React from "react";
 import heroImg from "../assets/hero-img.png";
-import img1 from "../assets/img-1.png";
+import img1 from "../assets/about-bakery.png";
 import img2 from "../assets/img-2.png";
 import img3 from "../assets/img-3.png";
 const Hero = () => {
@@ -24,7 +24,7 @@ const Hero = () => {
 
       <div className="basis-[65%] relative">
         {/* img1 */}
-        <div className="absolute w-[220px] h-[220px] bottom-0 left-5 bgwhite">
+        <div className="absolute w-[220px] h-[220px] -bottom-20 left-20 bgwhite z-10">
           <img src={img1} alt="" />
         </div>
 

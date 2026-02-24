@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   FaCircle,
   FaHeart,
@@ -13,6 +13,8 @@ import { TiShoppingCart } from "react-icons/ti";
 const ItemCard = ({ item }) => {
   const { addToCart, cartItems } = useContext(ShopContext);
   const cartItemAmount = cartItems[item.id];
+  const [clickHeart, setClickHeart] = useState(false);
+
   return (
     <div
       key={item.id}
@@ -27,9 +29,23 @@ const ItemCard = ({ item }) => {
       </div>
 
       {/* rating */}
-      <div className="flex flex-col items-end absolute right-2 top-16">
+      <div className="flex flex-col items-end absolute right-2 top-14">
         <div className="mr-2 my-1">
-          <FaRegHeart className="text-[17px]" />
+          {clickHeart === false ? (
+            <FaRegHeart
+              className={`$text-[17px]`}
+              onClick={() => {
+                setClickHeart(true);
+              }}
+            />
+          ) : (
+            <FaHeart
+              className={`$text-[17px]`}
+              onClick={() => {
+                setClickHeart(false);
+              }}
+            />
+          )}
         </div>
         <div className="flex gap-0.5">
           <FaStar className="text-[12px] text-black" />
@@ -47,14 +63,18 @@ const ItemCard = ({ item }) => {
         </p>
         <p className="mt-2 font-bold">
           <span className="font-extrabold mr-2 text-[19px] text-green-500">
-            ${item.newPrice}
+            ${Number(item.newPrice).toFixed(2)}
           </span>
           <span className="text-gray-300 mr-1 text-[16px]">
-            ${item.oldPrice}
+            ${Number(item.oldPrice).toFixed(2)}
           </span>
         </p>
         <button
-          className="absolute bottom-1 p-2 ronded-tl-2xl right-3 bg-green-500  text-white my-2 text-[14px]"
+          className="absolute bottom-1 p-2 ronded-tl-2xl right-3 bg-green-500 rounded-full text-white my-2 text-[14px]
+          hover:scale-105
+          duration-150
+          transition-all
+          "
           onClick={() => addToCart(item.id)}
         >
           <TiShoppingCart className="text-[20px]" />{" "}

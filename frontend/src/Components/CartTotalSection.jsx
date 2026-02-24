@@ -9,7 +9,7 @@ const CartTotalSection = () => {
   const totalAmount = getTotalCartAmount();
 
   const generateAmount = (amount, taxrate) => {
-    return amount * taxrate;
+    return Number((amount * taxrate).toFixed(2));
   };
 
   const shippingCost = generateAmount(totalAmount, 0.11);
@@ -59,7 +59,7 @@ const CartTotalSection = () => {
           <div className="flex items-center justify-between my-2">
             <p className="font-bold capitalize text-[18px]">Subtotal</p>
             <p className="text-black font-bold text-[20px]">
-              $ {totalAmount - discount}
+              $ {Number((totalAmount - discount).toFixed(2))}
             </p>
           </div>
 
@@ -70,7 +70,7 @@ const CartTotalSection = () => {
 
           <div className="flex items-center justify-between my-1">
             <p className="font-semibold capitalize text-[15px]">
-              shipping cost
+              delivery cost
             </p>
             <p className="text-black font-semibold text-[18px]">
               $ {shippingCost}
@@ -83,7 +83,8 @@ const CartTotalSection = () => {
           <div className="flex items-center justify-between my-2 mt-4">
             <p className="font-bold capitalize text-[20px]">Estmate Total</p>
             <p className="text-black font-extrabold text-[20px]">
-              ${totalAmount + shippingCost + tax - discount}
+              $
+              {Number((totalAmount + shippingCost + tax - discount).toFixed(2))}
             </p>
           </div>
 

@@ -3,7 +3,7 @@ import { FaCircle, FaStar } from "react-icons/fa";
 
 const AboutCard = ({ img, name, itemCount }) => {
   return (
-    <div className="relative mx-auto pt-3">
+    <div className="relative mx-auto pt-3 hover:scale-110 duration-300">
       {/* img */}
       <div className="absolute w-[120px] h-[120px] rounded-full left-[50%] translate-x-[-50%] -top-14">
         <img

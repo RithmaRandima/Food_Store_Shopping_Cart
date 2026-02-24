@@ -1,9 +1,11 @@
 import React from "react";
 import mainImg from "../assets/newsletter-img.png";
-import img1 from "../assets/img-2.png";
-import img2 from "../assets/newsletter-delivery.png";
-import img3 from "../assets/newsletter-low.png";
-import img4 from "../assets/newsletter-best-service.png";
+import img1 from "../assets/about-dairy.png";
+
+import img2 from "../assets/about-fruits.png";
+import img3 from "../assets/about-bakery.png";
+import img4 from "../assets/about-vegetable.png";
+import img5 from "../assets/about-meat.png";
 import NewsletterBox from "./NewsletterBox";
 
 const Newsletter = () => {
@@ -16,22 +18,41 @@ const Newsletter = () => {
 
       {/* box 01 */}
       <div className="absolute right-90 top-0">
-        <NewsletterBox img={img1} name={"FRESH & HEALTHY FOODS"} />
+        <NewsletterBox
+          img={img1}
+          name={"Creamy dairy for rich comforting dishes."}
+        />
       </div>
 
       {/* box 02 */}
-      <div className="absolute right-60 top-30">
-        <NewsletterBox img={img2} name={"FRESH & HEALTHY FOODS"} />
+      <div className="absolute right-60 top-25">
+        <NewsletterBox
+          img={img2}
+          name={"Naturally sweet bites of pure sunshine"}
+        />
       </div>
-
       {/* box 03 */}
-      <div className="absolute right-70 top-65">
-        <NewsletterBox img={img3} name={"FRESH & HEALTHY FOODS"} />
+      <div className="absolute right-40 top-52">
+        <NewsletterBox
+          img={img3}
+          name={"Freshly baked delights, warm from oven"}
+        />
       </div>
 
       {/* box 04 */}
-      <div className="absolute right-100 top-95">
-        <NewsletterBox img={img4} name={"FRESH & HEALTHY FOODS"} />
+      <div className="absolute right-65 top-80">
+        <NewsletterBox
+          img={img4}
+          name={"Fresh vegetables for vibrant homemade meals."}
+        />
+      </div>
+
+      {/* box 05 */}
+      <div className="absolute right-90 top-105">
+        <NewsletterBox
+          img={img5}
+          name={"Tender cuts crafted for hearty meals"}
+        />
       </div>
     </div>
   );
