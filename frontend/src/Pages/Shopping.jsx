@@ -6,7 +6,7 @@ import img2 from "../assets/about-dairy.png";
 
 const Shopping = () => {
   const [selected, setSelected] = useState("Vegetables");
-  const btnCategories = ["Vegetables", "Fruits", "Dairy", "Bakery"];
+  const btnCategories = ["Vegetables", "Fruits", "Dairy", "Bakery", "Meat"];
   return (
     <div id="products" className="relative -mt-1 py-5 pb-20">
       {/* img 01 */}
@@ -49,9 +49,6 @@ const Shopping = () => {
 
         {/* item section */}
         <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 mx-auto w-[75%] gap-10 mt-15">
-          {/* {itemList.map((item) => {
-            return <ItemCard item={item} />;
-          })} */}
           {itemList
             .filter((item) => item.category === selected)
             .map((item) => (

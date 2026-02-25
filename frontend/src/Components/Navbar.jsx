@@ -17,9 +17,9 @@ const Navbar = () => {
         <Link to={"/home"} className="mx-5 font-semibold text-[17px]">
           Home
         </Link>
-        <Link to={"/"} className="mx-5 font-semibold text-[17px]">
+        <a href="#about" className="mx-5 font-semibold text-[17px]">
           About
-        </Link>
+        </a>
         <a href="#products" className="mx-5 font-semibold text-[17px]">
           Products
         </a>

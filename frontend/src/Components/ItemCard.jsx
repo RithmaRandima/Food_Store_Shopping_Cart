@@ -18,7 +18,11 @@ const ItemCard = ({ item }) => {
   return (
     <div
       key={item.id}
-      className="bg-gradient-to-t from-white to-white/40 shadow-[1px_1px_5px_rgba(0,0,0,0.1)]  p-4 pt-5 h-fit relative rounded-2xl w-full mt-10"
+      className="bg-gradient-to-t from-white to-white/40 shadow-[1px_1px_5px_rgba(0,0,0,0.1)]  p-4 pt-5 h-fit relative rounded-2xl w-full mt-10
+      hover:shadow-[1px_1px_5px_rgba(0,0,0,0.2)] 
+      hover:-translate-y-1
+      duration-200
+      "
     >
       <div className="absolute w-[150px] h-[150px] rounded-full left-[50%] translate-x-[-50%] -top-22">
         <img
@@ -29,7 +33,7 @@ const ItemCard = ({ item }) => {
       </div>
 
       {/* rating */}
-      <div className="flex flex-col items-end absolute right-2 top-14">
+      <div className="flex flex-col items-end absolute right-2 top-13">
         <div className="mr-2 my-1">
           {clickHeart === false ? (
             <FaRegHeart
@@ -60,6 +64,9 @@ const ItemCard = ({ item }) => {
         <h1 className="font-bold text-[20px]">{item.name}</h1>
         <p className="text-[10px] uppercase tracking-[4px] font-bold text-gray-500">
           {item.category}
+        </p>
+        <p className="absolute bordr px-2 rounded-full text-[12px] uppercase font-bold bg-white text-black my-1 top-1 left-1">
+          {item.quantity}
         </p>
         <p className="mt-2 font-bold">
           <span className="font-extrabold mr-2 text-[19px] text-green-500">
