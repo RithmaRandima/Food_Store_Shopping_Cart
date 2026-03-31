@@ -5,7 +5,7 @@ import img1 from "../assets/img-3.PNG";
 import img2 from "../assets/about-dairy.png";
 import { Link } from "react-router-dom";
 
-const Shopping = () => {
+const ProductPageItems = () => {
   const [selected, setSelected] = useState("Vegetables");
   const btnCategories = ["Vegetables", "Fruits", "Dairy", "Bakery", "Meat"];
   return (
@@ -52,24 +52,13 @@ const Shopping = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto w-[75%] gap-10 mt-15">
           {itemList
             .filter((item) => item.category === selected) // filter first
-            .map((item, index) => ({ ...item, index })) // add index
-            .filter((_, idx) => idx < 8) // limit to first 8
             .map((item) => (
               <ItemCard key={item.id} item={item} />
             ))}
-        </div>
-
-        <div className="mx-auto my-10">
-          <Link
-            className="bg-black text-white font-semibold tracking-[1px] py-2 rounded-full px-4 text-[13px] hover:scale-105 duration-150 transition-all"
-            to={"/products"}
-          >
-            See More
-          </Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default Shopping;
+export default ProductPageItems;

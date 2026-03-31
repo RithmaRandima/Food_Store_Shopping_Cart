@@ -8,6 +8,7 @@ import Splash from "./Pages/Splash";
 import Register from "./Pages/Register";
 import Layout from "./Pages/admin/Layout";
 import Dashboard from "./Pages/admin/Dashboard";
+import Products from "./Pages/Products";
 
 const App = () => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/admin" element={<Layout />}>
             <Route index element={<Dashboard />} />
             {/* <Route path="addBlog" element={<AddBlog />} /> */}

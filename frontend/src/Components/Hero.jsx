@@ -7,8 +7,8 @@ const Hero = () => {
   return (
     <div className="w-full flex h-[80vh]  bg-gradient-to-t from-green-500 to-white ">
       {/* left */}
-      <div className="basis-[35%] pt-20 ">
-        <h1 className="font-extrabold text-[45px]">
+      <div className="basis-[45%] pt-20">
+        <h1 className="font-extrabold text-[55px]">
           Make healthy Life with <span className="text-green-600">Fresh</span>{" "}
           Grocery
         </h1>

@@ -25,9 +25,9 @@ const Navbar = () => {
         <a href="#about" className="mx-5 font-semibold text-[17px]">
           About
         </a>
-        <a href="#products" className="mx-5 font-semibold text-[17px]">
+        <Link to={"/products"} className="mx-5 font-semibold text-[17px]">
           Products
-        </a>
+        </Link>
       </div>
       {/* cart section */}
       <div className="flex gap-4 items-center">
