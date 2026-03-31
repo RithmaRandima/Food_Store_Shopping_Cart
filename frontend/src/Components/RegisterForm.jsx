@@ -3,8 +3,12 @@ import React, { useState } from "react";
 import { FaFacebook, FaGooglePlus, FaInstagram } from "react-icons/fa";
 import bgImg from "../assets/register-bg.jpg";
 import Popupmessage from "./Popupmessage";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const RegisterForm = ({ switchToSignin, popup, setPopup }) => {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -13,38 +17,43 @@ const RegisterForm = ({ switchToSignin, popup, setPopup }) => {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
-    const { username, email, password } = user;
-    let message;
 
+    const { username, email, password } = user;
+
+    // ✅ Frontend validation
     if (!username || !email || !password) {
-      message = "All Fields Are Required";
-      setPopup({ show: true, message, type: "error" });
+      toast.error("All fields are required");
       return;
     }
 
     try {
-      // Send request to backend
       const response = await axios.post(
-        "http://localhost:5001/api/v1/user/register",
+        "http://localhost:5001/api/user/register",
         user,
       );
 
-      // Show success toast
-      message = response.data.message || "Successfully Registered";
+      // ✅ Success case
+      if (response.data?.success) {
+        toast.success(response.data.message || "Registration successful!");
 
-      setPopup({ show: true, message: message, type: "success" });
+        console.log("User Registered:", response.data);
 
-      // Wait 3 seconds before navigating
-
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      setPopup({ ...popup, show: false, type: "success" }); // hide popup
-      switchToSignin();
+        setTimeout(() => {
+          switchToSignin();
+        }, 200);
+      } else {
+        toast.error(response.data?.message || "Registration failed");
+      }
     } catch (error) {
-      // Extract message from backend if available
-      const message = "This Email Already Taken!";
-      setPopup({ show: true, message, type: "error", bgColor: "red" });
-      console.log("Failed to Register User:", error);
+      // ✅ Proper error handling
+      const message =
+        error.response?.data?.message || // backend message
+        error.message || // axios/network message
+        "Something went wrong";
+
+      toast.error(message);
+
+      console.error("Failed to Register User:", error.response || error);
     }
   };
 
@@ -81,7 +90,7 @@ const RegisterForm = ({ switchToSignin, popup, setPopup }) => {
             </label>
             <input
               name={"email"}
-              type="email"
+              type="text"
               placeholder="Enter Email"
               value={user.email}
               className="w-full my-2 px-3 py-2 rounded-4xl border text-white border-white"
@@ -108,6 +117,7 @@ const RegisterForm = ({ switchToSignin, popup, setPopup }) => {
               }
             />
           </div>
+
           {/* button */}
           <div>
             <button
@@ -134,14 +144,6 @@ const RegisterForm = ({ switchToSignin, popup, setPopup }) => {
             <FaFacebook className="text-2xl text-green-500" />
             <FaInstagram className="text-2xl text-green-500" />
           </div>
-          {/* popup box */}
-          {popup.show && (
-            <div
-              className={`absolute bottom-3 right-0 ${popup.type === "success" ? "bg-green-500" : "bg-red-500"}`}
-            >
-              <Popupmessage message={popup.message} />
-            </div>
-          )}
         </div>
       </div>
 

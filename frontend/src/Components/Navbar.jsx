@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { HiShoppingBag } from "react-icons/hi2";
 import { FaSearch } from "react-icons/fa";
 import { BiSolidLeaf } from "react-icons/bi";
+import ShopContext from "../context/Shop-context";
 
 const Navbar = () => {
+  const { userDetails, token } = useContext(ShopContext);
+
+  console.log(userDetails?.username?.includes("r"));
+  console.log(token);
   return (
     <div className="flex p-3 px-10 items-center justify-between bg-white">
       {/* logo */}
@@ -26,14 +31,17 @@ const Navbar = () => {
       </div>
       {/* cart section */}
       <div className="flex gap-4 items-center">
-        <FaSearch
-          className="text-[20px] text-green-600
-           cursor-pointer
-        hover:scale-105 duration-150 transition-all"
-        />
         <Link to={"/cart"}>
-          <HiShoppingBag className="text-[40px] text-green-600/90  hover:text-green-600 hover:scale-105 duration-150 transition-all" />
+          <HiShoppingBag className="text-[35px] text-black/90  hover:text-green-600 hover:scale-105 duration-150 transition-all" />
         </Link>
+        {userDetails?.username?.includes("r") && (
+          <Link
+            to="/admin"
+            className="bg-black text-white font-semibold tracking-[1px] py-2 rounded-full px-4 text-[13px] hover:scale-105 duration-150 transition-all"
+          >
+            Dashboard
+          </Link>
+        )}
       </div>
     </div>
   );

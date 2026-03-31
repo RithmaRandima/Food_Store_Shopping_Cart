@@ -24,7 +24,7 @@ const Cart = () => {
       {totalAmount ? (
         <div>
           <div className="py-7">
-            <h1 className="pt-11 pb-3 pl-15 font-extrabold text-[35px] border-b border-black/20">
+            <h1 className="pt-11 pb-3 pl-15 font-extrabold text-[35px] ">
               My Cart
             </h1>
           </div>

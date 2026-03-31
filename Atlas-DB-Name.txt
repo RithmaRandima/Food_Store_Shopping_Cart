@@ -1,0 +1,7 @@
+Project Name : user_registration
+
+Link Address : "https://cloud.mongodb.com/v2/699ac459916de73464185238" 
+Mongo URL : "mongodb+srv://programmingrandy_db_user:rkNGVPn5Aos08fz7@cluster0.jw3hkiw.mongodb.net/user_registration?appName=Cluster0"
+Cluster Name : "Cluster0"
+Username : "programmingrandy_db_user"
+Password : "rkNGVPn5Aos08fz7@cluster0"

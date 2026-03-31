@@ -6,13 +6,15 @@ import Home from "./Pages/Home";
 import { ShopContextProvider } from "./context/Shop-context";
 import Splash from "./Pages/Splash";
 import Register from "./Pages/Register";
+import Layout from "./Pages/admin/Layout";
+import Dashboard from "./Pages/admin/Dashboard";
 
 const App = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/register");
-    }, 2000);
+    }, 800);
 
     return () => clearTimeout(timer);
   }, []);
@@ -25,6 +27,12 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/admin" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            {/* <Route path="addBlog" element={<AddBlog />} /> */}
+            {/* <Route path="listBlog" element={<ListBlog />} /> */}
+            {/* <Route path="comments" element={<Comments />} /> */}
+          </Route>
         </Routes>
       </ShopContextProvider>
     </div>

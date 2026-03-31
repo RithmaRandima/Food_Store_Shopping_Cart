@@ -1,4 +1,7 @@
 import User from "../models/User.js";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import validator from "validator";
 
 export const getAllRegisteredUsers = async (req, res) => {
   try {
@@ -15,13 +18,61 @@ export const registerUser = async (req, res) => {
     const { username, email, password } = req.body || {};
 
     if (!username || !email || !password) {
-      return res.status(400).json({ message: "All fields are required" });
+      return res
+        .status(400)
+        .json({ success: false, message: "All fields are required" });
     }
 
-    const user = new User({ username, email, password });
+    const existsUser = await User.findOne({ email });
+
+    if (existsUser) {
+      return res
+        .status(400)
+        .json({ success: false, message: "User already exists!" });
+    }
+
+    if (!validator.isEmail(email)) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Please enter valid Email!" });
+    }
+
+    if (
+      !validator.isStrongPassword(password, {
+        minLength: 8,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Password must be at least 8 characters and include uppercase, lowercase, number and symbol",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = new User({ username, email, password: hashedPassword });
+
     const saveUser = await user.save();
 
-    res.status(201).json(saveUser);
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: "5h",
+      },
+    );
+
+    res.status(201).json({
+      success: true,
+      user,
+      token,
+      message: "Registration Successfull!",
+    });
   } catch (error) {
     console.log("error on registerUser function", error);
     res.status(500).json({ message: "Internal server error" });
@@ -29,28 +80,38 @@ export const registerUser = async (req, res) => {
 };
 
 export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
   try {
-    const { email, password } = req.body;
     if (!email || !password) {
       return res
         .status(400)
-        .json({ message: "Email and password are required" });
+        .json({ success: false, message: "All Fields are required!" });
     }
     console.log("Login attempt:", { email, password });
 
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(400).json({ error: true, message: "User not found!" });
     }
 
-    if (user.password !== password) {
-      return res.status(401).json({ message: "Invalid password" });
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid Credentials" });
     }
 
-    res
-      .status(200)
-      .json({ message: "Login successful", user: { email: user.email } });
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "5h" },
+    );
+
+    res.status(201).json({
+      success: true,
+      user,
+      token,
+      message: "Login Successfull!",
+    });
   } catch (error) {
     console.log("error on loginUser function", error);
     res.status(500).json({ message: "Internal server error" });

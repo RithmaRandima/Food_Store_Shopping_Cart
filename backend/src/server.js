@@ -16,7 +16,7 @@ server.use(
   }),
 );
 
-server.use("/api/v1/user", registerRoute);
+server.use("/api/user", registerRoute);
 
 const PORT = process.env.PORT || 5001;
 
