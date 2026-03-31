@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { itemList } from "../assets/ItemsData";
-import ItemCard from "../Components/ItemCard";
+import ItemCard from "./ItemCard";
 import img1 from "../assets/img-3.PNG";
 import img2 from "../assets/about-dairy.png";
 import { Link } from "react-router-dom";

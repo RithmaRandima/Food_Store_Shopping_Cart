@@ -1,11 +1,11 @@
 import React from "react";
-import Shopping from "./Shopping";
+import Shopping from "../Components/Shopping";
 import ProductPageItems from "../Components/ProductPageItems";
 import Navbar from "../Components/Navbar";
 
 const Products = () => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Navbar />
       <ProductPageItems />
     </div>

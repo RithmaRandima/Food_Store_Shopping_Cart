@@ -1,5 +1,5 @@
 import React from "react";
-import Shopping from "./Shopping";
+import Shopping from "../Components/Shopping";
 import Hero from "../Components/Hero";
 import About from "../Components/About";
 import Newsletter from "../Components/Newsletter";

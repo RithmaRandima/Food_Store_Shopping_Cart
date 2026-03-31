@@ -22,9 +22,9 @@ const Navbar = () => {
         <Link to={"/home"} className="mx-5 font-semibold text-[17px]">
           Home
         </Link>
-        <a href="#about" className="mx-5 font-semibold text-[17px]">
+        <Link to="/about" className="mx-5 font-semibold text-[17px]">
           About
-        </a>
+        </Link>
         <Link to={"/products"} className="mx-5 font-semibold text-[17px]">
           Products
         </Link>
