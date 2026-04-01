@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { Background, Parallax } from "react-parallax";
 import { motion, useScroll, useTransform } from "framer-motion";
 import img1 from "../assets/about-feature-img-1.jpg";
 import img3 from "../assets/about-feature-img-3.jpg";
@@ -137,28 +136,3 @@ const FeatureSection = () => {
 };
 
 export default FeatureSection;
-
-//  <div className="ralative  header-contents absolute top-1/2 right-0 -translate-y-1/2 flex flex-col items-end px-4">
-//       <p className="text-amber-100 font-exd text-[15px] tracking-[4px] -mb-3">
-//         More flavor for less
-//       </p>
-//       <h2 className="font-extrabold text-right text-[80px] text-white tracking-wider">
-//         Good food and Great vibes
-//       </h2>
-
-//       <button className="btn">View Menu</button>
-//     </div>
-
-//     {/* img tacos*/}
-//     <div className="absolute right-0 top-50">
-//       <img src={mainImgObject.newsletterTacos} alt="" className="w-[500px]" />
-//     </div>
-
-//     {/* img sandwitch */}
-//     <div className=" absolute -right-30 -top-50">
-//       <img
-//         src={mainImgObject.newsletterSandwitch}
-//         alt=""
-//         className="w-[300px]"
-//       />
-//     </div>

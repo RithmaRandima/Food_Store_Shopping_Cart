@@ -1,26 +1,21 @@
 import React from "react";
 import AboutCard from "./AboutCard";
 import { aboutItemList } from "../assets/ItemsData";
-// import img2 from "../assest/img-2.png";
+import placeholderImage from "../assets/placeholder-image.png";
 
 const About = () => {
   return (
-    <div
-      id="about"
-      className=" mx-auto p-6 flex flex-col gap-6 text-white py-8 bg-gradient-to-b from-green-500 to-white rounded-b-full pb-20 pt-20 w-[90%]"
-    >
-      <div className="grid grid-cols-1 md:gap-6 md:grid-cols-5 pb-2 md:pb-6 md:p-10 w-[80%] mx-auto">
-        {aboutItemList.map((item) => (
-          <AboutCard
-            img={item.img}
-            name={item.name}
-            itemCount={item.itemCount}
-          />
-        ))}
-      </div>
+    <div className="relative mx-auto p-6 flex flex-col gap-6 text-white py-8 pb-20  w-[90%]">
+      {/* placeholder img */}
+      <img
+        src={placeholderImage}
+        className="absolute -left-55  bottom-[20px] opacity-70 w-[400px] h-[400px] object-contain"
+        alt=""
+      />
 
-      <div className="text-center">
-        <h5 className="text-[12px] tracking-[4px] text-white font-semibold uppercase my-2">
+      {/* text */}
+      <div className="text-center mb-5">
+        <h5 className="text-[12px] tracking-[4px] text-black font-semibold uppercase my-2">
           TASTY AND HEALTHEY
         </h5>
         <h1 className="font-extrabold text-[45px] text-black">
@@ -31,6 +26,17 @@ const About = () => {
           expedita, incidunt quam, libero quod consectetur quaerat optio vitae
           fugiat eveniet quisquam vero nostrum qui!lorem
         </p>
+      </div>
+
+      {/* list */}
+      <div className="grid grid-cols-1 md:gap-6 md:grid-cols-5 pb-2 md:pb-6 md:p-10 w-[90%] mx-auto">
+        {aboutItemList.map((item) => (
+          <AboutCard
+            img={item.img}
+            name={item.name}
+            itemCount={item.itemCount}
+          />
+        ))}
       </div>
     </div>
   );

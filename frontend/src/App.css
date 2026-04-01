@@ -8,9 +8,25 @@
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.805)),
     url("./assets/product-hero-bg.jpg");
+  background-size: cover;
+  background-position: bottom;
+}
+
+.comment-section {
+  background-image: url("./assets/comment-section-bg.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-position: bottom;
+}
+
+/* Hide scrollbar but keep scrolling */
+.scroll-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
 @layer components {
@@ -31,3 +47,5 @@
     @apply bg-green-400/20 text-black shadow-[2px_2px_2px_1px_rgba(0,0,0,0.2)];
   }
 }
+
+/* bg-gradient-to-b from-green-500 to-white */

@@ -13,7 +13,7 @@ const AboutCard = ({ img, name, itemCount }) => {
         />
       </div>
       {/* box */}
-      <div className="w-[140px] h-[140px]  bg-gradient-to-b from-white/30 to-white rounded-[10px]  pt-10">
+      <div className="w-[140px] h-[140px] rounded-[10px]  pt-10">
         {/* item details */}
         <div className=" mt-3 text-center relative">
           <h1 className="font-bold text-[18px] text-black">{name}</h1>

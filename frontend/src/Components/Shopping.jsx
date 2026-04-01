@@ -2,24 +2,27 @@ import React, { useState } from "react";
 import { itemList } from "../assets/ItemsData";
 import ItemCard from "./ItemCard";
 import img1 from "../assets/img-3.PNG";
-import img2 from "../assets/about-dairy.png";
+import placeholderImage from "../assets/placeholder-image-3.png";
 import { Link } from "react-router-dom";
 
 const Shopping = () => {
   const [selected, setSelected] = useState("Vegetables");
   const btnCategories = ["Vegetables", "Fruits", "Dairy", "Bakery", "Meat"];
   return (
-    <div className="relative -mt-1 py-5 pb-20">
-      {/* img 01 */}
-      <div className="absolute w-[350px] h-[350px] bg-lack -right-10 -top-40">
-        <img src={img1} alt="" className="w-full h-full object-cover" />
-      </div>
+    <div className="relative py-5 pb-20 mt-15">
+      {/* bg img */}
+      <img
+        src={img1}
+        className="absolute left-[50%] -translate-x-[50%]  top-[110px] opacity-30 w-[800px] h-[800px] object-cover"
+        alt=""
+      />
 
-      {/* img 02 */}
-
-      <div className="absolute w-[170px] h-[150px] bg-lack right-40 top-10">
-        <img src={img2} alt="" className="w-full h-full object-cover" />
-      </div>
+      {/* placeholder img */}
+      <img
+        src={placeholderImage}
+        className="absolute -right-5  -top-[40px] opacity-70 w-[320px] h-[320px] object-contain"
+        alt=""
+      />
 
       {/* heading section */}
       <div className="flex flex-col">
@@ -32,7 +35,7 @@ const Shopping = () => {
         </p>
 
         {/* button section */}
-        <div className="my-3 pl-10">
+        <div className="my-3 pl-10 mt-10 mb-5">
           {btnCategories.map((category, index) => {
             return (
               <button
@@ -59,9 +62,9 @@ const Shopping = () => {
             ))}
         </div>
 
-        <div className="mx-auto my-10">
+        <div className="mx-auto mt-15 mb-10">
           <Link
-            className="bg-black text-white font-semibold tracking-[1px] py-2 rounded-full px-4 text-[13px] hover:scale-105 duration-150 transition-all"
+            className="bg-black text-white font-semibold tracking-[1px] py-2 rounded-full px-6 text-[20px] hover:scale-105 duration-150 transition-all"
             to={"/products"}
           >
             See More
