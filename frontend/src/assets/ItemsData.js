@@ -56,6 +56,35 @@ import aboutItem3 from "./about-dairy.png";
 import aboutItem4 from "./about-bakery.png";
 import aboutItem5 from "./about-meat.png";
 
+import productItem1 from "./product-list-item-vegetabls.png";
+import productItem2 from "./product-list-item-fruits.png";
+import productItem3 from "./product-list-item-dairy.png";
+import productItem4 from "./product-list-item-bakery.png";
+import productItem5 from "./product-list-item-meat.png";
+
+export const btnCategories = [
+  {
+    name: "Vegetables",
+    image: productItem1,
+  },
+  {
+    name: "Fruits",
+    image: productItem2,
+  },
+  {
+    name: "Dairy",
+    image: productItem3,
+  },
+  {
+    name: "Bakery",
+    image: productItem4,
+  },
+  {
+    name: "Meat",
+    image: productItem5,
+  },
+];
+
 export const itemList = [
   {
     id: 1,

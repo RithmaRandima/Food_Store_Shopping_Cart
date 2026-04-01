@@ -18,7 +18,7 @@ const Navbar = () => {
         <BiSolidLeaf className="absolute top-[0%] -right-6 text-[30px] rotate-20 text-green-600" />
       </div>
       {/* middle nav */}
-      <div className="flex">
+      <div className="fle">
         <Link to={"/home"} className="mx-5 font-semibold text-[17px]">
           Home
         </Link>

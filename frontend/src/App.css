@@ -4,6 +4,15 @@
   scroll-behavior: smooth;
 }
 
+.product-hero {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.805)),
+    url("./assets/product-hero-bg.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: bottom;
+}
+
 @layer components {
   .btn-primary {
     @apply bg-transparent border-2 text-black text-[15px] mx-[5px] px-5 py-1 rounded-full 
@@ -12,5 +21,13 @@
   }
   .btn-primary.active {
     @apply bg-black border-black text-white;
+  }
+  .btn-sidebar {
+    @apply bg-transparent flex items-center h-11 gap-2  mb-2 px-2 text-black text-[15px] w-full 
+           hover:shadow-[1px_2px_8px_rgba(0,0,0,0.2)] rounded-full transition duration-200 pl-3
+           font-medium;
+  }
+  .btn-sidebar.active {
+    @apply bg-green-400/20 text-black shadow-[2px_2px_2px_1px_rgba(0,0,0,0.2)];
   }
 }
