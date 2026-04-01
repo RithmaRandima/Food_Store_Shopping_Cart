@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 // import { Background, Parallax } from "react-parallax";
 import { motion, useScroll, useTransform } from "framer-motion";
-import img1 from "../assets/register-bg.jpg";
-
+import img1 from "../assets/about-feature-img-1.jpg";
+import img3 from "../assets/about-feature-img-3.jpg";
 const FeatureSection = () => {
   const style = {
     fontFamily: "Great Vibes, cursive",
@@ -11,7 +11,7 @@ const FeatureSection = () => {
   const [scrollY, setScrollY] = useState(0);
   const baseOffset1 = 370;
   const baseOffset2 = 800;
-  const baseOffset3 = 1500;
+  const baseOffset3 = 1450;
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -25,33 +25,31 @@ const FeatureSection = () => {
         <div className="flex-1 flex justify-center items-center text-center">
           {/* text section */}
           <motion.div
-            className=""
+            className="bg-green-400/60 p-4 py-6"
             style={{
               transform: `translateY(${baseOffset1 + scrollY * -1}px)`,
             }}
           >
             {/* header */}
-            <div className="text-center">
+            <div className="text-center ">
               <h1
                 style={style}
-                className="text-amber-600 font-exd text-[25px] tracking-[7px] -mb-3"
+                className="text-black font-exd text-[22px] tracking-[4px] -mb-4"
               >
-                Chef
+                Fresh
               </h1>
-              <h1 className="text-white uppercase text-[50px] tracking-[1px] font-extralight mb-4">
-                Philosophy
+              <h1 className="text-white uppercase text-[50px] tracking-[5px] font-extrabold mb-4">
+                Living
               </h1>
             </div>
-            <p className="text-white text-[19px] font-extralight">
-              "We craft every dish with passion, using fresh ingredients and
-              thoughtful flavors, creating memorable dining experiences where
-              great food, warm service, and genuine hospitality bring people
-              together at every meal."
+            <p className="text-black text-[19px] font-extralight">
+              "We bring you the freshest groceries every day, carefully sourced
+              from trusted farms and suppliers. From crisp vegetables to daily
+              essentials, we make healthy living simple, convenient, and
+              accessible for every home."
             </p>
 
-            <p className="underline text-amber-300 text-[20px] mt-5">
-              Learn More
-            </p>
+            <p className="underline text-black text-[20px] mt-5">Shop Mow</p>
           </motion.div>
         </div>
         <div className=" flex-1 px-10 h-150">
@@ -67,32 +65,33 @@ const FeatureSection = () => {
         <div className=" flex-1">
           {/* text section */}
           <motion.div
-            className=""
+            className="bg-purple-500/60 p-4 py-6 "
             style={{
               transform: `translateY(${baseOffset2 + scrollY * -0.8}px)`,
             }}
           >
             {/* header */}
-            <div className="text-center">
+            <div className="text-center ">
               <h1
                 style={style}
-                className="text-amber-600 font-exd text-[25px] tracking-[7px] -mb-4"
+                className="text-black font-exd text-[22px] tracking-[4px] -mb-4"
               >
-                Check out
+                Explore
               </h1>
-              <h1 className="uppercase text-white text-[40px] tracking-[1px] font-extralight mb-3">
-                Restaurant
+
+              <h1 className="text-white uppercase text-[40px] tracking-[2px] font-extrabold mb-4">
+                Our Store
               </h1>
             </div>
-            <p className="text-white text-center text-[19px] font-extralight">
-              "At our restaurant, every dish is a celebration of flavor and
-              tradition. We use the freshest ingredients, craft each plate with
-              care, and serve it with warmth, creating a dining experience that
-              brings friends and family together over unforgettable meals."
+            <p className="text-black text-center text-[19px] font-extralight">
+              "Discover a wide range of fresh produce, pantry essentials, and
+              daily needs all in one place. We focus on quality, affordability,
+              and convenience to make your grocery shopping smooth and
+              enjoyable."
             </p>
 
-            <p className="underline text-amber-300 text-center text-[17px] mt-5">
-              Find Us
+            <p className="underline text-black text-center text-[17px] mt-5">
+              Browse Products
             </p>
           </motion.div>
         </div>
@@ -102,7 +101,7 @@ const FeatureSection = () => {
         <div className=" flex-1 flex justify-center items-center text-center">
           {/* text section */}
           <motion.div
-            className=""
+            className="bg-red-400/60 p-4 py-6"
             style={{
               transform: `translateY(${baseOffset3 + scrollY * -1}px)`,
             }}
@@ -111,28 +110,26 @@ const FeatureSection = () => {
             <div className="text-center">
               <h1
                 style={style}
-                className="text-amber-600 font-exd text-[25px] tracking-[7px] -mb-6"
+                className="text-black font-exd text-[22px] tracking-[4px] -mb-4"
               >
-                Meet
+                Trusted
               </h1>
-              <h1 className="text-white uppercase text-[50px] tracking-[1px] font-extralight mb-4">
-                Our Chef
+              <h1 className="text-white uppercase text-[50px] tracking-[5px] font-extrabold mb-4">
+                Quality
               </h1>
             </div>
-            <p className="text-white text-[19px] font-extralight">
-              "Our chefs are the heart of every meal, blending skill,
-              creativity, and passion in every dish. From hand-selected
-              ingredients to artful presentation, they craft experiences that
-              delight the senses and celebrate the joy of exceptional cuisine."
+            <p className="text-balc text-[19px] font-extralight">
+              "We partner with trusted farmers and suppliers to bring you
+              high-quality products you can rely on. Every item is carefully
+              selected to ensure freshness, nutrition, and value for your
+              everyday needs."
             </p>
 
-            <p className="underline text-amber-300 text-[20px] mt-5">
-              Watch Us
-            </p>
+            <p className="underline text-black text-[20px] mt-5">LEarn More</p>
           </motion.div>
         </div>
         <div className=" flex-1 px-10 h-150">
-          <img src={img1} alt="" className="h-full w-full object-cover" />
+          <img src={img3} alt="" className="h-full w-full object-cover" />
         </div>
       </div>
     </div>
