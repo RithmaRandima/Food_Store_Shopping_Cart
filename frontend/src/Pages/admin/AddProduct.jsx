@@ -8,7 +8,7 @@ const AddProduct = () => {
   const sizes = ["500g", "1kg", "1 Pack", "1 Item", "1 Bottle"];
   const [selectedSize, setSelectedSize] = useState("500g");
 
-  const [mainimage, setMainImage] = useState(null);
+  const [image, setimage] = useState(null);
 
   const [data, setData] = useState({
     name: "",
@@ -35,7 +35,7 @@ const AddProduct = () => {
   //   formData.append("discount", Number(data.discount));
   //   formData.append("stock", Number(data.stock));
 
-  //   if (mainimage) formData.append("mainImage", mainimage);
+  //   if (image) formData.append("image", image);
   //   if (image1) formData.append("image1", image1);
   //   if (image2) formData.append("image2", image2);
   //   if (image3) formData.append("image3", image3);
@@ -62,7 +62,7 @@ const AddProduct = () => {
   //         discount: "",
   //         stock: "",
   //       });
-  //       setMainImage(null);
+  //       setimage(null);
   //       setImage1(null);
   //       setImage2(null);
   //       setImage3(null);
@@ -80,7 +80,7 @@ const AddProduct = () => {
   const handelThat = (e) => {
     e.preventDefault();
     console.log("data : ", data);
-    console.log("mainImage : ", mainimage);
+    console.log("image : ", image);
   };
   return (
     <div className="add w-[100%] relative p-5 pb-20 h-fit ">
@@ -215,12 +215,12 @@ const AddProduct = () => {
             {/* top big image */}
             <div className="w-[100%] mx-auto h-[260px] mb-2">
               <label
-                htmlFor="mainimage"
+                htmlFor="image"
                 className="cursor-pointer text-black w-full h-full flex flex-col  items-center justify-center border border-dashed border-gray-500/30 rounded-xl"
               >
-                {mainimage ? (
+                {image ? (
                   <img
-                    src={URL.createObjectURL(mainimage)}
+                    src={URL.createObjectURL(image)}
                     alt=""
                     className="w-full h-full object-cover rounded-xl object-top"
                   />
@@ -231,9 +231,9 @@ const AddProduct = () => {
               <input
                 type="file"
                 hidden
-                id="mainimage"
+                id="image"
                 onChange={(e) => {
-                  setMainImage(e.target.files[0]);
+                  setimage(e.target.files[0]);
                 }}
               />
             </div>

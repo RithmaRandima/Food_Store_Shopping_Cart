@@ -2,9 +2,10 @@ import dotenv from "dotenv";
 dotenv.config(); // load .env first
 
 import express from "express";
-import registerRoute from "./routes/registerRoutes.js";
 import { connectDB } from "./config/db.js";
 import cors from "cors";
+import userRouter from "./routes/userRoutes.js";
+import productRouter from "./routes/productRoutes.js";
 
 const server = express();
 server.use(express.json());
@@ -16,7 +17,8 @@ server.use(
   }),
 );
 
-server.use("/api/user", registerRoute);
+server.use("/api/user", userRouter);
+server.use("/api/product", productRouter);
 
 const PORT = process.env.PORT || 5001;
 
