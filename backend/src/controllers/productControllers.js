@@ -15,6 +15,29 @@ export const allProduct = async (req, res) => {
   }
 };
 
+export const getProductById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await productModel.findById(id);
+
+    if (!product) {
+      res.json({
+        success: false,
+        message: "This Product don't Exists",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Product Founded",
+      product,
+    });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+    console.log("Error on getProductById function", error);
+  }
+};
+
 // addProduct Function
 export const addProduct = async (req, res) => {
   try {
