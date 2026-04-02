@@ -29,6 +29,22 @@
   display: none; /* Chrome, Safari, Edge */
 }
 
+.scale-up {
+  animation: scaleIncrease 3s ease-in-out infinite;
+}
+
+@keyframes scaleIncrease {
+  0% {
+    transform: scale(0.97);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(0.97);
+  }
+}
+
 @layer components {
   .btn-primary {
     @apply bg-transparent border-2 text-black text-[15px] mx-[5px] px-5 py-1 rounded-full 

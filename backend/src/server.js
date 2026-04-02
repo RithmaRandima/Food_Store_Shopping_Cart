@@ -19,6 +19,7 @@ server.use(
 
 server.use("/api/user", userRouter);
 server.use("/api/product", productRouter);
+server.use("/images", express.static("uploads"));
 
 const PORT = process.env.PORT || 5001;
 

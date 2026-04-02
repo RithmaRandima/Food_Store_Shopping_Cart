@@ -1,66 +1,103 @@
-import React from "react";
-import mainImg from "../assets/newsletter-img.png";
-import img1 from "../assets/about-dairy.png";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import topStroke from "../assets/brush-stroke-bg-reverse.png";
+import bottomStroke from "../assets/brush-stroke-bg.png";
+import itemBeetroot from "../assets/item-beetroot.png";
+import itemPomegranat from "../assets/item-pomegranat.png";
+import itemAvocados from "../assets/item-avocado.png";
+import itemOrange from "../assets/item-orange.png";
+import itemBellPepper from "../assets/item-bell-pepper.png";
+import itemcabbage from "../assets/item-purple-cabbage.png";
+import Testimonials from "./Testimonials";
+import NewsLetterContent from "./NewsLetterContent";
 
-import img2 from "../assets/about-fruits.png";
-import img3 from "../assets/about-bakery.png";
-import img4 from "../assets/about-vegetable.png";
-import img5 from "../assets/about-meat.png";
-import NewsletterBox from "./NewsletterBox";
-import placeholderImage from "../assets/item_grapes.png";
+// Boxes data
+const boxesData = [
+  {
+    image: itemBeetroot,
+    baseOffset: 1030,
+    width: 160,
+    height: 160,
+    speed: 0.3,
+    left: 5, // manual left % for right side
+  },
+  {
+    image: itemPomegranat,
+    baseOffset: 1870,
+    width: 280,
+    height: 280,
+    speed: 0.35,
+    left: 50,
+  },
+  {
+    image: itemcabbage,
+    baseOffset: 1230,
+    width: 200,
+    height: 200,
+    speed: 0.35,
+    left: 28,
+  },
+  {
+    image: itemBellPepper,
+    baseOffset: 830,
+    width: 150,
+    height: 150,
+    speed: 0.2,
+    left: 30,
+  },
+  {
+    image: itemOrange,
+    baseOffset: 1900,
+    width: 160,
+    height: 160,
+    speed: 0.5,
+    left: 1,
+  },
+  {
+    image: itemAvocados,
+    baseOffset: 3000,
+    width: 210,
+    height: 200,
+    speed: 0.9,
+    left: 65,
+  },
+];
 
 const Newsletter = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const style = { fontFamily: "Great Vibes, cursive" };
+
   return (
-    <div className="relative w-full overflow-hidden h-[500px]">
-      {/* main img */}
-      <div className="absolute -bottom-5 -left-14 w-[500px] h-[560px] ">
-        <img src={mainImg} alt="" className="h-full w-full object-cover" />
-      </div>
-      {/* placeholder img */}
+    <div className="relative min-h-full  overflow-hidden flex flex-col">
+      {/* Left side - static content */}
 
-      <img
-        src={placeholderImage}
-        className="absolute -right-55  -top-[10px] w-[500px] h-[500px]  object-contain"
-        alt=""
-      />
+      {/* Right side - moving boxes */}
+      {boxesData.map((box, index) => (
+        <motion.div
+          key={index}
+          className={`${box.color} w-[${box.width}px] h-[${box.height}px] absolute `}
+          style={{
+            top: `${box.baseOffset}px`,
+            left: `${box.left}%`,
+            transform: `translateY(${scrollY * -box.speed}px)`,
+          }}
+        >
+          <img src={box.image} className="w-full h-full object-cover" alt="" />
+        </motion.div>
+      ))}
 
-      {/* box 01 */}
-      <div className="absolute right-90 top-0">
-        <NewsletterBox
-          img={img1}
-          name={"Creamy dairy for rich comforting dishes."}
-        />
+      <div className="bg-emerald-300 h-[100vh] ">
+        <Testimonials />
       </div>
-
-      {/* box 02 */}
-      <div className="absolute right-60 top-25">
-        <NewsletterBox
-          img={img2}
-          name={"Naturally sweet bites of pure sunshine"}
-        />
-      </div>
-      {/* box 03 */}
-      <div className="absolute right-40 top-52">
-        <NewsletterBox
-          img={img3}
-          name={"Freshly baked delights, warm from oven"}
-        />
-      </div>
-
-      {/* box 04 */}
-      <div className="absolute right-65 top-80">
-        <NewsletterBox
-          img={img4}
-          name={"Fresh vegetables for vibrant homemade meals."}
-        />
-      </div>
-
-      {/* box 05 */}
-      <div className="absolute right-90 top-105">
-        <NewsletterBox
-          img={img5}
-          name={"Tender cuts crafted for hearty meals"}
-        />
+      <div className="bg-emerald-300 h-fit bg-red-400">
+        <NewsLetterContent />
       </div>
     </div>
   );

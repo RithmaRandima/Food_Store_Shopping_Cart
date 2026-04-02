@@ -3,84 +3,93 @@ import { useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
 import axios from "axios";
 import { RiStickyNoteAddFill } from "react-icons/ri";
+import toast from "react-hot-toast";
+import { useContext } from "react";
+import ShopContext from "../../context/Shop-context";
 
 const AddProduct = () => {
+  const { navigate } = useContext(ShopContext);
   const sizes = ["500g", "1kg", "1 Pack", "1 Item", "1 Bottle"];
-  const [selectedSize, setSelectedSize] = useState("500g");
+  const [selectedSize, setSelectedSize] = useState("");
 
   const [image, setimage] = useState(null);
 
   const [data, setData] = useState({
     name: "",
     description: "",
-    option: selectedSize || "500g",
+    option: selectedSize,
     category: "",
-    status: "In Stock",
+    status: "",
     price: "",
-    discount: 0,
+    discount: "",
     stock: "",
   });
 
-  // const onSubmitHandeler = async (e) => {
-  //   e.preventDefault();
-
-  //   const formData = new FormData();
-  //   formData.append("name", data.name);
-  //   formData.append("shortDescription", data.shortDescription);
-  //   formData.append("fullDescription", data.fullDescription);
-  //   formData.append("category", data.category);
-  //   formData.append("status", data.status);
-  //   formData.append("oldPrice", Number(data.oldPrice));
-  //   formData.append("newPrice", Number(data.newPrice));
-  //   formData.append("discount", Number(data.discount));
-  //   formData.append("stock", Number(data.stock));
-
-  //   if (image) formData.append("image", image);
-  //   if (image1) formData.append("image1", image1);
-  //   if (image2) formData.append("image2", image2);
-  //   if (image3) formData.append("image3", image3);
-  //   if (image4) formData.append("image4", image4);
-
-  //   try {
-  //     const response = await axios.post(
-  //       "http://localhost:4000/api/products/add",
-  //       formData,
-  //       {
-  //         headers: { "Content-Type": "multipart/form-data" },
-  //       },
-  //     );
-
-  //     if (response.data.success) {
-  //       setData({
-  //         name: "",
-  //         shortDescription: "",
-  //         fullDescription: "",
-  //         category: "",
-  //         status: "",
-  //         oldPrice: "",
-  //         newPrice: "",
-  //         discount: "",
-  //         stock: "",
-  //       });
-  //       setimage(null);
-  //       setImage1(null);
-  //       setImage2(null);
-  //       setImage3(null);
-  //       setImage4(null);
-  //       alert(response.data.message);
-  //     } else {
-  //       alert("Error adding product");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     alert("Something went wrong while adding product");
-  //   }
-  // };
-
-  const handelThat = (e) => {
+  const onSubmitHandeler = async (e) => {
     e.preventDefault();
-    console.log("data : ", data);
-    console.log("image : ", image);
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("description", data.description);
+    formData.append("option", data.option);
+    formData.append("category", data.category);
+    formData.append("price", data.price);
+    formData.append("status", data.status);
+    formData.append("discount", data.discount);
+    formData.append("stock", data.stock);
+    formData.append("image", image);
+
+    if (!data.name.trim()) return toast.error("Product name is required");
+
+    if (!data.description.trim()) return toast.error("Description is required");
+
+    if (!data.category) return toast.error("Category is required");
+
+    if (!image) return toast.error("Product image is required");
+
+    if (!data.price || Number(data.price) <= 0)
+      return toast.error("Enter valid price");
+
+    if (Number(data.discount) < 0)
+      return toast.error("Discount cannot be negative");
+
+    if (!data.stock || Number(data.stock) < 0)
+      return toast.error("Enter valid stock");
+
+    try {
+      const { data } = await axios.post(
+        "http://localhost:5001/api/product/add-product",
+        formData,
+      );
+
+      toast.success(data.message);
+
+      if (data.success) {
+        setData({
+          name: "",
+          description: "",
+          option: selectedSize,
+          category: "",
+          status: "",
+          price: "",
+          discount: "",
+          stock: "",
+        });
+
+        setimage(null);
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error(
+        "Error on onSubmitHandeler function on AddProducts Page",
+        error,
+      );
+      toast.error("Something went wrong while adding product");
+    }
   };
   return (
     <div className="add w-[100%] relative p-5 pb-20 h-fit ">
@@ -93,7 +102,10 @@ const AddProduct = () => {
       </div>
 
       {/* content */}
-      <form onSubmit={handelThat} className="w-full h-screen flex gap-6 mb-30">
+      <form
+        onSubmit={onSubmitHandeler}
+        className="w-full h-screen flex gap-6 mb-30"
+      >
         {/* left side */}
         <div className="flex-2">
           {/*general info section  */}
@@ -143,7 +155,10 @@ const AddProduct = () => {
                 {sizes.map((size) => (
                   <div
                     key={size}
-                    onClick={() => setSelectedSize(size)}
+                    onClick={() => {
+                      setSelectedSize(size);
+                      setData((prev) => ({ ...prev, option: size }));
+                    }}
                     className={`px-4 py-2 rounded-lg cursor-pointer border transition-all duration-200 text-sm font-medium
         ${
           selectedSize === size

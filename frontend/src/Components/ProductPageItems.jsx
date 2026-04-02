@@ -1,12 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { btnCategories, itemList } from "../assets/ItemsData.js";
 import ItemCard from "../Components/ItemCard";
 import img1 from "../assets/item-turkey.png";
 import img2 from "../assets/item-yogurt.png";
 import { Link } from "react-router-dom";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import toast from "react-hot-toast";
+import axios from "axios";
 const ProductPageItems = () => {
   const [selected, setSelected] = useState("Vegetables");
+
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    const fetchList = async () => {
+      try {
+        const { data } = await axios.get(
+          "http://localhost:5001/api/product/all-products",
+        );
+        if (data.success) {
+          setList(data.products);
+        } else {
+          toast.error("Failed to Load Data");
+        }
+      } catch (error) {
+        console.error("Error on fetchList function on ProductList Page", error);
+        toast.error("Something went wrong while fetching products");
+      }
+    };
+
+    fetchList();
+  }, []);
+
   return (
     <div className="relative -mt-1 py-5">
       {/* box 01 */}
@@ -99,7 +124,7 @@ const ProductPageItems = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto gap-10  bg-slate-100/60 rounded-[25px] py-10 px-5">
-              {itemList
+              {list
                 .filter((item) => item.category === selected) // filter first
                 .map((item) => (
                   <ItemCard key={item.id} item={item} />
