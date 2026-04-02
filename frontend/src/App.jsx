@@ -10,6 +10,8 @@ import Layout from "./Pages/admin/Layout";
 import Dashboard from "./Pages/admin/Dashboard";
 import Products from "./Pages/Products";
 import About from "./Pages/About";
+import AddProduct from "./Pages/admin/AddProduct";
+import ProductList from "./Pages/admin/ProductList";
 
 const App = () => {
   const navigate = useNavigate();
@@ -33,8 +35,8 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/admin" element={<Layout />}>
             <Route index element={<Dashboard />} />
-            {/* <Route path="addBlog" element={<AddBlog />} /> */}
-            {/* <Route path="listBlog" element={<ListBlog />} /> */}
+            <Route path="addProduct" element={<AddProduct />} />
+            <Route path="productList" element={<ProductList />} />
             {/* <Route path="comments" element={<Comments />} /> */}
           </Route>
         </Routes>

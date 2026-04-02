@@ -11,7 +11,7 @@ const Navbar = () => {
   console.log(userDetails?.username?.includes("r"));
   console.log(token);
   return (
-    <div className="flex p-3 px-10 items-center justify-between bg-white">
+    <div className="flex p-3 px-10 items-center justify-between bg-white h-[70px]">
       {/* logo */}
       <div className="relative">
         <h1 className="text-[20px] font-bold">FRESHMET</h1>

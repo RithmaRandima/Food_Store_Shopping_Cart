@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import ShopContext from "../../context/Shop-context";
 import Sidebar from "c:/Users/randy/Desktop/blog-app/frontend/src/components/admin/Sidebar";
+import { BiSolidLeaf } from "react-icons/bi";
 
 const Layout = () => {
   const { navigate, logout } = useContext(ShopContext);
@@ -15,12 +16,17 @@ const Layout = () => {
   return (
     <>
       <div className="flex items-center justify-between py-2 h-[70px] px-4 sm:px-12 border-b border-gray-200">
-        <div onClick={() => navigate("/home")}>
-          <h1>Logo here</h1>
+        {/* logo */}
+        <div
+          className="relative cursor-pointer"
+          onClick={() => navigate("/home")}
+        >
+          <h1 className="text-[20px] font-bold">FRESHMET</h1>
+          <BiSolidLeaf className="absolute top-[0%] -right-6 text-[30px] rotate-20 text-green-600" />
         </div>
         <button
           onClick={logout}
-          className="flex items-center gap-2 rounded-full text-sm cursor-pointer bg-primary text-black px-8 py-2"
+          className="bg-black text-white font-semibold tracking-[1px] py-2 rounded-full px-4 text-[13px] hover:scale-105 duration-150 transition-all"
         >
           Logout
         </button>

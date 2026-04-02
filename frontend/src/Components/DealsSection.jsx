@@ -14,8 +14,8 @@ const boxesData = [
   {
     image: itemBeetroot,
     baseOffset: 330,
-    width: 170,
-    height: 170,
+    width: 160,
+    height: 160,
     speed: 0.3,
     left: 5, // manual left % for right side
   },
@@ -46,8 +46,8 @@ const boxesData = [
   {
     image: itemOrange,
     baseOffset: 780,
-    width: 170,
-    height: 170,
+    width: 160,
+    height: 160,
     speed: 0.5,
     left: 1,
   },
