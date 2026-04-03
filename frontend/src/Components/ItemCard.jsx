@@ -1,11 +1,5 @@
 import React, { useContext, useState } from "react";
-import {
-  FaCircle,
-  FaHeart,
-  FaRegHeart,
-  FaStar,
-  FaStarHalf,
-} from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
 import ShopContext from "../context/Shop-context";
 import { IoMdAdd } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
@@ -83,6 +77,7 @@ const ItemCard = ({ item }) => {
           <p className="absolute bordr px-2 rounded-full text-[14px] uppercase font-bold bg-white text-black my-1 top-1 left-1">
             {item.option}
           </p>
+          {/* price section */}
           <p className="mt-2 font-bold">
             <span className="font-extrabold mr-2 text-[19px] text-green-500">
               ${Number(item.price).toFixed(2)}

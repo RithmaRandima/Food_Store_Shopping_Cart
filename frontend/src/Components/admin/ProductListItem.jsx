@@ -33,11 +33,11 @@ const ProductListItem = ({ item }) => {
     >
       {/* discount section */}
       {item.discount !== 0 && (
-        <div className="flex absolute -top-4 -right-3 flex-col items-center justify-center rounded-full bg-red-500 w-[65px] h-[65px]">
-          <p className=" text-[18px] font-extrabold cursor-pointer text-white">
+        <div className="flex absolute top-2 right-2 gap-1 py-1 px-3 items-center justify-center rounded-full bg-red-500  ">
+          <p className="text-[12px] font-bold text-white">Save</p>
+          <p className=" text-[16px] font-bold cursor-pointer text-white">
             {item.discount}%
           </p>
-          <p className="text-[12px] font-extrabold text-white -mt-1">OFF</p>
         </div>
       )}
 
