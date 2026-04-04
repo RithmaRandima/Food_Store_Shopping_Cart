@@ -1,16 +1,19 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { FaHeart, FaMinus, FaPlus, FaRegHeart, FaStar } from "react-icons/fa";
 import Navbar from "../Components/Navbar";
 import { FaShoppingBag } from "react-icons/fa";
 import Reviews from "../Components/Reviews";
+import ShopContext from "../context/Shop-context";
 const ProductDetails = () => {
   const { id } = useParams();
+  const { addToCart, removeFromCart, cartItems } = useContext(ShopContext);
   const [clickHeart, setClickHeart] = useState(false);
   const [productDetails, setProductDetails] = useState({});
   const [activeButton, setActiveButton] = useState("description");
+  const cartItemAmount = cartItems[id];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -43,21 +46,9 @@ const ProductDetails = () => {
     Bakery: "text-orange-400",
   };
 
-  const sizes = [
-    { weight: "500g", itemPrice: productDetails?.price || 0 },
-    { weight: "1kg", itemPrice: (productDetails?.price || 0) * 2 },
-    { weight: "2kg", itemPrice: (productDetails?.price || 0) * 4 },
-    { weight: "5kg", itemPrice: (productDetails?.price || 0) * 5 },
-  ];
-
-  const [selectedSize, setSelectedSize] = useState(sizes[0]); // ✅ default 500g
-
   const oldPrice = (
-    productDetails?.option?.includes("g")
-      ? selectedSize.itemPrice +
-        (selectedSize.itemPrice * productDetails.discount) / 100
-      : productDetails.price +
-        (productDetails.price * productDetails.discount) / 100
+    productDetails.price +
+    (productDetails.price * productDetails.discount) / 100
   ).toFixed(2);
   return (
     <div className="">
@@ -144,65 +135,55 @@ const ProductDetails = () => {
 
           {/* price section */}
           <p className="font-bold mb-4">
-            <span className="mr-2 text-[35px] text-[#6a9c06]/90">
-              $
-              {Number(
-                productDetails?.option?.includes("g")
-                  ? selectedSize.itemPrice
-                  : productDetails?.price,
-              ).toFixed(2)}
+            <span className="mr-2 text-[35px] font-extrabold text-[#000]/90">
+              ${Number(productDetails.price).toFixed(2)}
             </span>
             <span className="text-slate-400/70 line-through mr-1 text-[20px]">
               ${Number(oldPrice).toFixed(2)}
             </span>
           </p>
-          {/* Quantity section */}
 
-          {productDetails?.option?.includes("g") ? (
-            <div className="w-full mb-10">
-              {/* <p className="mb-3 font-medium text-gray-700">Weight</p> */}
+          <div className=" py-1 tracking-[2px] border w-fit font-bold  text-[17px] px-4">
+            {productDetails.option}
+          </div>
 
-              <div className="flex gap-3 flex-wrap">
-                {sizes.map((size) => (
-                  <div
-                    key={size.weight}
-                    onClick={() => {
-                      setSelectedSize(size);
-                    }}
-                    className={`px-4.5 py-1.5 rounded-full cursor-pointer border transition-all duration-200 text-sm font-medium
-        ${
-          selectedSize.weight === size.weight
-            ? "bg-black text-white shadow-md scale-105"
-            : "bg-white text-gray-700 border-gray-300 hover:border-black hover:shadow-sm"
-        }`}
-                  >
-                    {size.weight}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className=" py-1 tracking-[2px] border w-fit font-bold  text-[15px] px-3">
-              {productDetails.option}
+          {/* total section */}
+          {cartItemAmount > 0 && (
+            <div className="absolute bottom-30 right-9 py-1 tracking-[2px] bordr w-fit font-bold  text-[20px] px-4">
+              Total:{" "}
+              <span className="text-[35px] font-bold ">
+                ${(productDetails.price * cartItemAmount).toFixed(2)}
+              </span>
             </div>
           )}
 
           {/* calculation button section */}
-          <div className="w-full flex items-center gap-5 mt-14">
+          <div className="w-[90%] flex items-center gap-5 mt-25">
             {/* top button */}
-            <div className="w-[250px] flex items-center justify-center gap-7 py-2 rounded-[5px]">
-              <button className="text-[15px] h-8 w-8 rounded-full flex justify-center items-center hover:bg-[#6a9c06] hover:text-white">
+            <div className="w-[40%] bg-[#6a9c06]/10 rounded-full flex items-center justify-center gap-6.5 py-1 rounded-[5px] ">
+              <button
+                onClick={() => removeFromCart(id)}
+                className="border-2 text-[#6a9c06] text-[13px] h-5 w-5 rounded-full flex justify-center items-center hover:bg-[#6a9c06] hover:text-white hover:border-[#6a9c06]"
+              >
                 <FaMinus />
               </button>
-              <p className="text-[30px] font-semibold">0</p>
+              <p className="text-[25px] font-semibold text-[#6a9c06]">
+                {cartItemAmount || 0}
+              </p>
 
-              <button className="text-[15px] h-8 w-8 rounded-full flex justify-center items-center hover:bg-[#6a9c06] hover:text-white">
+              <button
+                onClick={() => addToCart(id)}
+                className="border-2 text-[#6a9c06] text-[13px] h-5 w-5 rounded-full flex justify-center items-center hover:bg-[#6a9c06] hover:text-white hover:border-[#6a9c06]"
+              >
                 <FaPlus />
               </button>
             </div>
 
             {/* cart button */}
-            <div className="w-full bg-[#6a9c06]/80 rounded-full text-white flex items-center justify-center gap-3 py-3.5 rounded-[5px] hover:bg-[#6a9c06]">
+            <div
+              onClick={() => addToCart(id)}
+              className="cursor-pointer w-full bg-[#6a9c06]/80 rounded-full text-white flex items-center justify-center gap-3 py-3.5 rounded-[5px] hover:bg-[#6a9c06]"
+            >
               <FaShoppingBag className="text-[22px]" />
               <p className="text-[16px] font-semibold">Add to Cart</p>
             </div>

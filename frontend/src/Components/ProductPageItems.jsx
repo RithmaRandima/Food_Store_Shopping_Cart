@@ -127,7 +127,7 @@ const ProductPageItems = () => {
               {list
                 .filter((item) => item.category === selected) // filter first
                 .map((item) => (
-                  <ItemCard key={item.id} item={item} />
+                  <ItemCard key={item._id} item={item} />
                 ))}
             </div>
           </div>

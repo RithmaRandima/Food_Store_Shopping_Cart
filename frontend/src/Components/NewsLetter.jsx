@@ -1,65 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import topStroke from "../assets/brush-stroke-bg-reverse.png";
-import bottomStroke from "../assets/brush-stroke-bg.png";
-import itemBeetroot from "../assets/item-beetroot.png";
 import itemPomegranat from "../assets/item-pomegranat.png";
-import itemAvocados from "../assets/item-avocado.png";
-import itemOrange from "../assets/item-orange.png";
-import itemBellPepper from "../assets/item-bell-pepper.png";
-import itemcabbage from "../assets/item-purple-cabbage.png";
+import itemPassion from "../assets/item_passion.png";
+import itemBlueberry from "../assets/item-blueberry.png";
 import Testimonials from "./Testimonials";
 import NewsLetterContent from "./NewsLetterContent";
 
 // Boxes data
 const boxesData = [
   {
-    image: itemBeetroot,
-    baseOffset: 1030,
-    width: 160,
-    height: 160,
-    speed: 0.3,
-    left: 5, // manual left % for right side
-  },
-  {
     image: itemPomegranat,
-    baseOffset: 1870,
-    width: 280,
-    height: 280,
-    speed: 0.35,
-    left: 50,
+    baseOffset: 2400,
+    width: 350,
+    height: 350,
+    speed: 0.47,
+    left: 75,
   },
+
   {
-    image: itemcabbage,
-    baseOffset: 1230,
-    width: 200,
-    height: 200,
-    speed: 0.35,
-    left: 28,
-  },
-  {
-    image: itemBellPepper,
-    baseOffset: 830,
-    width: 150,
-    height: 150,
-    speed: 0.2,
-    left: 30,
-  },
-  {
-    image: itemOrange,
-    baseOffset: 1900,
-    width: 160,
-    height: 160,
+    image: itemBlueberry,
+    baseOffset: 2150,
+    width: 300,
+    height: 300,
     speed: 0.5,
-    left: 1,
+    left: 2,
   },
   {
-    image: itemAvocados,
-    baseOffset: 3000,
-    width: 210,
-    height: 200,
+    image: itemPassion,
+    baseOffset: 3200,
+    width: 400,
+    height: 400,
     speed: 0.9,
-    left: 65,
+    left: 80,
   },
 ];
 
@@ -93,10 +65,10 @@ const Newsletter = () => {
         </motion.div>
       ))}
 
-      <div className="bg-emerald-300 h-[100vh] ">
+      <div>
         <Testimonials />
       </div>
-      <div className="bg-emerald-300 h-fit bg-red-400">
+      <div>
         <NewsLetterContent />
       </div>
     </div>

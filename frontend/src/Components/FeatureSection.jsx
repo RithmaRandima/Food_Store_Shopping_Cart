@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import img1 from "../assets/about-feature-img-1.jpg";
+import img2 from "../assets/about-feature-img-2.jpg";
 import img3 from "../assets/about-feature-img-3.jpg";
 const FeatureSection = () => {
   const style = {
@@ -24,7 +25,7 @@ const FeatureSection = () => {
         <div className="flex-1 flex justify-center items-center text-center">
           {/* text section */}
           <motion.div
-            className="bg-green-400/60 p-4 py-6"
+            className="bg-green-400/70 p-4 py-6"
             style={{
               transform: `translateY(${baseOffset1 + scrollY * -1}px)`,
             }}
@@ -48,6 +49,15 @@ const FeatureSection = () => {
               accessible for every home."
             </p>
 
+            <p className="text-black text-[19px] font-extralight my-2">
+              Enjoy quality you can trust, delivered with care to your
+              doorstep—so you spend less time shopping and more time living.
+            </p>
+            <p className="text-black text-[19px] font-extralight">
+              We make everyday shopping effortless with reliable delivery and
+              handpicked products you can count on.
+            </p>
+
             <p className="underline text-black text-[20px] mt-5">Shop Mow</p>
           </motion.div>
         </div>
@@ -58,7 +68,7 @@ const FeatureSection = () => {
       {/* middle */}
       <div className=" flex ">
         <div className="flex-2 px-5 pr-15 h-120">
-          <img src={img1} alt="" className="h-full w-full object-cover" />
+          <img src={img2} alt="" className="h-full w-full object-cover" />
         </div>
 
         <div className=" flex-1">

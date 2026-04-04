@@ -23,14 +23,14 @@ const Cart = () => {
       {/* checkput section */}
       {totalAmount ? (
         <div>
-          <div className="py-7">
-            <h1 className="pt-11 pb-3 pl-15 font-extrabold text-[35px] ">
-              My Cart
+          <div className="pt-7 border-b border-slate-300">
+            <h1 className="pt-15 pb-6 pl-15 font-bold text-[30px] ">
+              Shopping Cart
             </h1>
           </div>
-          <div className="flex pb-10">
+          <div className="flex pb-10 bg-am mt-5">
             <CartItemContainer />
-            <div className=" flex-2 relative w-full min-h-screen ">
+            <div className=" flex-1 relative w-full min-h-screen ">
               <CartTotalSection />
             </div>
           </div>

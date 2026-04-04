@@ -1,23 +1,17 @@
 import React, { createContext, useState, useEffect } from "react";
 import { itemList } from "../assets/ItemsData";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export const ShopContext = createContext(null);
-
-const getDefaultCart = () => {
-  let cart = {};
-  for (let i = 1; i < itemList.length + 1; i++) {
-    cart[i] = 0;
-  }
-  return cart;
-};
 
 export const ShopContextProvider = (props) => {
   const navigate = useNavigate();
 
-  const [cartItems, setCartItems] = useState(getDefaultCart());
   const [userDetails, setUserDetails] = useState(null); // ✅ fixed typo
   const [token, setToken] = useState(null);
+  const [defaultCart, setDefaultCart] = useState([]);
 
   // ✅ Load data from localStorage when app starts
   useEffect(() => {
@@ -48,20 +42,63 @@ export const ShopContextProvider = (props) => {
   }, [userDetails]);
 
   // ✅ Cart functions
+
+  useEffect(() => {
+    const fetchDefaultCart = async () => {
+      try {
+        const { data } = await axios.get(
+          "http://localhost:5001/api/product/all-products",
+        );
+        if (data.success) {
+          setDefaultCart(data.products);
+        } else {
+          toast.error("Failed to Load Data For Default Cart");
+        }
+      } catch (error) {
+        console.error(
+          "Error on fetchDefaultCart function on Shop-Context",
+          error,
+        );
+        toast.error("Something went wrong while fetching products");
+      }
+    };
+    fetchDefaultCart();
+  }, []);
+
+  // get default cart
+  const getDefaultCart = () => {
+    let cart = {};
+    defaultCart.forEach((product) => {
+      cart[product._id] = 0; // use the actual product ID
+    });
+    return cart;
+  };
+
+  // add to cart
   const addToCart = (itemId) => {
     setCartItems((prev) => ({
       ...prev,
-      [itemId]: prev[itemId] + 1,
+
+      [itemId]: (prev[itemId] || 0) + 1,
     }));
   };
 
+  // remove from cart
   const removeFromCart = (itemId) => {
-    setCartItems((prev) => ({
-      ...prev,
-      [itemId]: prev[itemId] - 1,
-    }));
-  };
+    setCartItems((prev) => {
+      const currentCount = prev[itemId] || 0;
 
+      if (currentCount <= 0) {
+        toast.error("There are no items to remove");
+        return prev; // 🚫 don't update state
+      }
+
+      return {
+        ...prev,
+        [itemId]: currentCount - 1,
+      };
+    });
+  };
   const updateCartItemCount = (newAmount, id) => {
     setCartItems((prev) => ({
       ...prev,
@@ -69,18 +106,36 @@ export const ShopContextProvider = (props) => {
     }));
   };
 
+  const [cartItems, setCartItems] = useState(getDefaultCart());
+
+  const [cartItemCount, setCartItemCount] = useState(0);
+
+  useEffect(() => {
+    const count = Object.values(cartItems).reduce((sum, qty) => sum + qty, 0);
+    setCartItemCount(count);
+  }, [cartItems]);
+
+  // items count
+  // Object.values(cartItems).reduce((sum, qty) => sum + qty, 0)
+
+  console.log(cartItems.length);
+  console.log(cartItems);
+
   const getTotalCartAmount = () => {
     let totalAmount = 0;
 
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
-        let itemInfo = itemList.find((product) => product.id === Number(item));
-        totalAmount += cartItems[item] * itemInfo.newPrice;
+        let itemInfo = defaultCart.find((product) => product._id === item);
+        totalAmount += cartItems[item] * itemInfo.price;
+        console.log(itemInfo);
       }
     }
 
     return totalAmount;
   };
+
+  console.log(getTotalCartAmount());
 
   // ✅ Logout function (VERY useful)
   const logout = () => {
@@ -88,10 +143,12 @@ export const ShopContextProvider = (props) => {
     setUserDetails(null);
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    navigate("/register");
+    navigate("/home");
   };
 
   const contextValue = {
+    cartItemCount,
+    defaultCart,
     navigate,
     userDetails,
     setUserDetails, // ✅ fixed

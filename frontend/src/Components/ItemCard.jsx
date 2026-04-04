@@ -7,14 +7,15 @@ import { Link } from "react-router-dom";
 
 const ItemCard = ({ item }) => {
   const { addToCart, cartItems } = useContext(ShopContext);
-  const cartItemAmount = cartItems[item.id];
+  const cartItemAmount = cartItems[item._id];
   const [clickHeart, setClickHeart] = useState(false);
+
   const oldPrice = (item.price + (item.price * item.discount) / 100).toFixed(2);
 
   return (
     <Link to={`/products/${item._id}`}>
       <div
-        key={item.id}
+        key={item._id}
         className=" bg-gradient-to-t from-white to-white/40 shadow-[1px_1px_5px_rgba(0,0,0,0.1)]  p-4 pt-5 h-fit relative rounded-2xl w-full mt-10
       hover:shadow-[1px_1px_5px_rgba(0,0,0,0.2)] 
       hover:-translate-y-1
@@ -94,15 +95,13 @@ const ItemCard = ({ item }) => {
           "
             onClick={(e) => {
               e.preventDefault();
-              addToCart(item.id);
+              addToCart(item._id);
             }}
           >
             <TiShoppingCart className="text-[20px]" />{" "}
           </button>
-
-          {/* count */}
           {cartItemAmount > 0 && (
-            <div className="absolute w-[35px] h-[35px] flex items-center justify-center font-extrabold text-black top-0 right-0">
+            <div className="absolute w-[35px] h-[35px] flex items-center justify-center font-extrabold text-black top-23 right-0">
               {cartItemAmount}
             </div>
           )}

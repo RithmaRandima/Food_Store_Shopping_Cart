@@ -5,16 +5,16 @@ import { useNavigate } from "react-router-dom";
 const EmptyCart = () => {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-t from-green-500 to-white ">
-      <LiaOpencart className="text-[80px] text-green-600" />
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-t from-[#6a9c06] to-white ">
+      <LiaOpencart className="text-[80px] text-[#6a9c06]" />
       <h1 className="font-extrabold text-[40px]">
-        Your Cart is <span className="text-green-600">Empty</span>
+        Your Cart is <span className="text-[#6a9c06]">Empty</span>
       </h1>
       <p className="font-bold mt-2">
         must add items on the cart before you preceed to chek out.
       </p>
       <button
-        className="my-7 bg-green-600 text-[17px] text-white btn-primary border-0  p-2 px-10 cursor-pointer"
+        className="my-7 bg-[#6a9c06] text-[17px] text-white btn-primary border-0  p-2 px-10 cursor-pointer"
         onClick={() => {
           navigate("/home");
         }}

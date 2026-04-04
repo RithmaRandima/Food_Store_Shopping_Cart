@@ -12,7 +12,7 @@ const ProductListItem = ({ item }) => {
     Bakery: "bg-orange-300",
   };
 
-  const oldPrice = (item.price + (item.price * item.discount) / 100).toFixed(2);
+  // const oldPrice = (item.price + (item.price * item.discount) / 100).toFixed(2);
 
   const getStockUnit = (option) => {
     const lowerOption = option.toLowerCase();

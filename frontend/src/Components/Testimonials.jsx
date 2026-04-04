@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { testimonialData } from "../assets/ItemsData";
 import TestimonialsBox from "./TestimonialsBox";
-import placeholderImage from "../assets/item-strawberries.png";
+import placeholderImage from "../assets/placeholder-image-5.png";
 
 const Testimonials = () => {
   var settings = {
@@ -46,7 +46,7 @@ const Testimonials = () => {
       {/* placeholder img */}
       <img
         src={placeholderImage}
-        className="absolute left-5  top-[20px] w-[280px] h-[280px] object-contain"
+        className="absolute left-5  top-[20px] w-[280px] h-[280px] object-contain opacity-20"
         alt=""
       />
 

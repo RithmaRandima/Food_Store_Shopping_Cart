@@ -6,14 +6,11 @@ import { BiSolidLeaf } from "react-icons/bi";
 import ShopContext from "../context/Shop-context";
 
 const Navbar = () => {
-  const { userDetails, token } = useContext(ShopContext);
-
-  console.log(userDetails?.username?.includes("r"));
-  console.log(token);
+  const { userDetails, token, cartItemCount, logout } = useContext(ShopContext);
   return (
     <div className="flex p-3 px-10 items-center justify-between bg-white h-[70px]">
       {/* logo */}
-      <div className="relative">
+      <div className="relative cursor-pointer">
         <h1 className="text-[20px] font-bold">FRESHMET</h1>
         <BiSolidLeaf className="absolute top-[0%] -right-6 text-[30px] rotate-20 text-green-600" />
       </div>
@@ -31,17 +28,40 @@ const Navbar = () => {
       </div>
       {/* cart section */}
       <div className="flex gap-4 items-center">
-        <Link to={"/cart"}>
+        <Link to={"/cart"} className="relative">
+          {cartItemCount > 0 && (
+            <div className="w-3 h-3 rounded-full absolute right-0 bg-red-500 flex items-center justify-center"></div>
+          )}
           <HiShoppingBag className="text-[35px] text-black/90  hover:text-green-600 hover:scale-105 duration-150 transition-all" />
         </Link>
-        {userDetails?.username?.includes("r") && (
+        {token ? (
+          <Link
+            onClick={() => {
+              if (token) {
+                logout();
+              }
+            }}
+            to={`${userDetails?.username?.includes("r") ? "/admin" : "/home"}`}
+            className="bg-black text-white font-semibold tracking-[1px] py-2 rounded-full px-4 text-[13px] hover:scale-105 duration-150 transition-all"
+          >
+            {userDetails?.username?.includes("r") ? "Dashboard" : "Logout"}
+          </Link>
+        ) : (
+          <Link
+            to="/register"
+            className="bg-black text-white font-semibold tracking-[1px] py-2 rounded-full px-4 text-[13px] hover:scale-105 duration-150 transition-all"
+          >
+            Login
+          </Link>
+        )}
+        {/* {userDetails?.username?.includes("r") && (
           <Link
             to="/admin"
             className="bg-black text-white font-semibold tracking-[1px] py-2 rounded-full px-4 text-[13px] hover:scale-105 duration-150 transition-all"
           >
             Dashboard
           </Link>
-        )}
+        )} */}
       </div>
     </div>
   );

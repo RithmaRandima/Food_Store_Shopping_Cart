@@ -20,8 +20,8 @@ const CartTotalSection = () => {
 
   return (
     <div className="w-[500px] bg-white h-full  fixed top-13 right-0 pt-1 pb-1 pr-1 ">
-      <div className=" p-3 pr-20 pt-4  ">
-        <h1 className="text-[30px] font-bold mb-2">Total</h1>
+      <div className=" p-3 pr-20 pt-10  ">
+        <h1 className="text-[30px] font-bold mb-5">Total</h1>
         {/* promo section */}
         <div>
           <p className="teacking-[1px] text-[12px] font-semibold text-gray-500">
@@ -45,7 +45,7 @@ const CartTotalSection = () => {
           <div className="flex items-center justify-between my-1">
             <p className="font-semibold capitalize text-[15px]">Items Total</p>
             <p className="text-black font-semibold text-[20px]">
-              ${totalAmount}
+              ${totalAmount.toFixed(2)}
             </p>
           </div>
 
@@ -65,7 +65,9 @@ const CartTotalSection = () => {
 
           <div className="flex items-center justify-between my-1">
             <p className="font-semibold capitalize text-[15px]">tax(10%)</p>
-            <p className="text-black font-semibold text-[18px]">$ {tax}</p>
+            <p className="text-black font-semibold text-[18px]">
+              $ {tax.toFixed(2)}
+            </p>
           </div>
 
           <div className="flex items-center justify-between my-1">

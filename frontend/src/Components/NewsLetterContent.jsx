@@ -7,7 +7,7 @@ import img3 from "../assets/about-bakery.png";
 import img4 from "../assets/about-vegetable.png";
 import img5 from "../assets/about-meat.png";
 import NewsletterBox from "./NewsletterBox";
-import placeholderImage from "../assets/item_grapes.png";
+import placeholderImage from "../assets/placeholder-image-6.png";
 
 const NewsLetterContent = () => {
   return (
@@ -17,10 +17,9 @@ const NewsLetterContent = () => {
         <img src={mainImg} alt="" className="h-full w-full object-cover" />
       </div>
       {/* placeholder img */}
-
       <img
         src={placeholderImage}
-        className="absolute -right-55  -top-[10px] w-[500px] h-[500px]  object-contain"
+        className="absolute left-45 -z-1 opacity-10 -top-[10px] w-[500px] h-[500px]  object-contain"
         alt=""
       />
 

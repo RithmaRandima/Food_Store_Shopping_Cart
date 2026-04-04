@@ -7,7 +7,6 @@ import { btnCategories } from "../../assets/ItemsData";
 
 const ProductList = () => {
   const [selected, setSelected] = useState("Vegetables");
-
   const [list, setList] = useState([]);
 
   useEffect(() => {

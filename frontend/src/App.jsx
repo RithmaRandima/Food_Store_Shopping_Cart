@@ -18,7 +18,7 @@ const App = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/register");
+      navigate("/home");
     }, 800);
 
     return () => clearTimeout(timer);
