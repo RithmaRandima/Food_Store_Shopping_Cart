@@ -6,6 +6,7 @@ import { connectDB } from "./config/db.js";
 import cors from "cors";
 import userRouter from "./routes/userRoutes.js";
 import productRouter from "./routes/productRoutes.js";
+import commentRouter from "./routes/commentRoutes.js";
 
 const server = express();
 server.use(express.json());
@@ -19,6 +20,7 @@ server.use(
 
 server.use("/api/user", userRouter);
 server.use("/api/product", productRouter);
+server.use("/api/comment", commentRouter);
 server.use("/images", express.static("uploads"));
 
 const PORT = process.env.PORT || 5001;
