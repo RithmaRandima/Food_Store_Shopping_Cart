@@ -95,10 +95,7 @@ const AddProduct = () => {
     <div className="add w-[100%] relative p-5 pb-20 h-fit ">
       {/* header */}
       <div className="flex items-center gap-2 mb-7">
-        <h1 className="text-[30px] font-bold mt-2">
-          Add New Item
-          <span className="block bg-[#ff007b] h-[5px] w-[40%] rounded-full  "></span>
-        </h1>
+        <h1 className="text-[25px]  font-semibold mt-2">Add New Item</h1>
       </div>
 
       {/* content */}
@@ -159,11 +156,11 @@ const AddProduct = () => {
                       setSelectedSize(size);
                       setData((prev) => ({ ...prev, option: size }));
                     }}
-                    className={`px-4 py-2 rounded-lg cursor-pointer border transition-all duration-200 text-sm font-medium
+                    className={`px-6 py-1.5 rounded-full cursor-pointer border transition-all duration-200 text-sm font-medium
         ${
           selectedSize === size
-            ? "bg-green-500 text-white border-green-500 shadow-md scale-105"
-            : "bg-white text-gray-700 border-gray-300 hover:border-green-400 hover:shadow-sm"
+            ? "bg-[#6a9c06] text-white border-[#6a9c06] shadow-md scale-105"
+            : "bg-white text-gray-700 border-gray-300 hover:border-[#6a9c06] hover:shadow-sm"
         }`}
                   >
                     {size}
@@ -240,7 +237,7 @@ const AddProduct = () => {
                     className="w-full h-full object-cover rounded-xl object-top"
                   />
                 ) : (
-                  <IoIosAddCircle className="text-[56px] text-[#ff007b]/50 hover:text-[#ff007b]" />
+                  <IoIosAddCircle className="text-[56px] text-[#6a9c06]/50 hover:text-[#ff007b]" />
                 )}
               </label>
               <input
@@ -308,7 +305,7 @@ const AddProduct = () => {
           {/* Add Button */}
           <div className="mx-auto flex items-center justify-center mt-8 ">
             <button
-              className="rounded-full w-[80%] border-2 border-black text-black b p-3 tracking-[2px] text-[16px] font-bold hover:bg-black hover:text-white cursor-pointer duration-200 hover:-translate-y-1"
+              className="rounded-full w-[80%] text-white bg-[#6a9c06] b p-3 tracking-[1px] text-[16px] font-bold hover:bg-black hover:text-white cursor-pointer duration-200 hover:-translate-y-1"
               type="submit"
             >
               Add Product

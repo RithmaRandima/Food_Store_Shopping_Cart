@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import ShopContext from "../../context/Shop-context";
-import Sidebar from "c:/Users/randy/Desktop/blog-app/frontend/src/components/admin/Sidebar";
 import { BiSolidLeaf } from "react-icons/bi";
+import Sidebar from "../../Components/admin/Sidebar";
 
 const Layout = () => {
   const { navigate, logout } = useContext(ShopContext);

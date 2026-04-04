@@ -4,47 +4,39 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col border-r border-gray-200 min-h-ful pt-6">
+    <div className="w-[225px] px-2 flex flex-col items--start border-r border-gray-200 min-h-ful pt-6">
       {/* Go to Dashboard */}
       <NavLink
         end
         to="/admin"
-        className={({ isActive }) =>
-          `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-64 cursor-pointer ${isActive && "bg-primary/10 border-r-4 border-primary"}`
-        }
+        className={({ isActive }) => `btn-sidebar ${isActive && "active"}`}
       >
         <FaHome />
         <p className="hidden md:inline-block">Dashboard</p>
       </NavLink>
 
-      {/* Add Blog */}
+      {/* Add Product */}
       <NavLink
-        to="/admin/addBlog"
-        className={({ isActive }) =>
-          `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-64 cursor-pointer ${isActive && "bg-primary/10 border-r-4 border-primary"}`
-        }
+        to="/admin/addProduct"
+        className={({ isActive }) => `btn-sidebar ${isActive && "active"}`}
       >
         <FaPlus />
-        <p className="hidden md:inline-block">Add Blog</p>
+        <p className="hidden md:inline-block">Add Product</p>
       </NavLink>
 
-      {/* List Blog */}
+      {/* List Product */}
       <NavLink
-        to="/admin/listBlog"
-        className={({ isActive }) =>
-          `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-64 cursor-pointer ${isActive && "bg-primary/10 border-r-4 border-primary"}`
-        }
+        to="/admin/productList"
+        className={({ isActive }) => `btn-sidebar ${isActive && "active"}`}
       >
         <FaList />
-        <p className="hidden md:inline-block">Blog List</p>
+        <p className="hidden md:inline-block">Product List</p>
       </NavLink>
 
       {/* List Blog */}
       <NavLink
         to="/admin/comments"
-        className={({ isActive }) =>
-          `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-64 cursor-pointer ${isActive && "bg-primary/10 border-r-4 border-primary"}`
-        }
+        className={({ isActive }) => `btn-sidebar ${isActive && "active"}`}
       >
         <FaComment />
         <p className="hidden md:inline-block">Comments</p>

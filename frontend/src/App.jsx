@@ -13,6 +13,7 @@ import About from "./Pages/About";
 import AddProduct from "./Pages/admin/AddProduct";
 import ProductList from "./Pages/admin/ProductList";
 import ProductDetails from "./Pages/ProductDetails";
+import CommentsList from "./Pages/admin/CommentsList";
 
 const App = () => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const App = () => {
             <Route index element={<Dashboard />} />
             <Route path="addProduct" element={<AddProduct />} />
             <Route path="productList" element={<ProductList />} />
-            {/* <Route path="comments" element={<Comments />} /> */}
+            <Route path="comments" element={<CommentsList />} />
           </Route>
         </Routes>
       </ShopContextProvider>

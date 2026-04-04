@@ -1,13 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { BsShop } from "react-icons/bs";
 import ProductListItem from "../../Components/admin/ProductListItem";
 import { btnCategories } from "../../assets/ItemsData";
+import ShopContext from "../../context/Shop-context";
 
 const ProductList = () => {
   const [selected, setSelected] = useState("Vegetables");
   const [list, setList] = useState([]);
+  const { defaultCart } = useContext(ShopContext);
 
   useEffect(() => {
     const fetchList = async () => {
@@ -34,17 +36,11 @@ const ProductList = () => {
   return (
     <div className="add w-[100%] h-fit">
       {/* header */}
-      <div>
-        <div className="flex items-center gap-2 ">
-          <BsShop className="size-[30px] " />
-          <h1 className="text-[30px] font-bold mt-2">
-            Shop Items
-            <span className="block bg-[#ff007b] h-[5px] w-[40%] rounded-full  "></span>
-          </h1>
-        </div>
-        <h1 className="mt-3 text-[20px] font-extrabold  text-right mr-5">
-          {/* {list.length} */}
-          <span className="ml-1 font-normal capitalize">Items</span>
+      <div className="flex items-center justify-between p-5">
+        <h1 className="text-[25px] font-semibold ">Shop Items</h1>
+        <h1 className="text-[25px] font-extrabold  text-right mr-5">
+          <span className="ml-1 font-normal capitalize">Items: </span>
+          {defaultCart.length}
         </h1>
       </div>
 
