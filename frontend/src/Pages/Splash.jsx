@@ -1,34 +1,19 @@
 import React from "react";
-import logo from "../assets/img-3.png";
 
 const Splash = () => {
   return (
-    <div className="relative flex items-center justify-center h-screen bg-gradient-to-t from-green-500 to-white px-4">
-      {/* Spinning Circle */}
-      <div className="absolute w-10 h-10 bottom-15 border-7 border-white border-t-transparent rounded-full animate-spin"></div>
-
-      {/* Centered content */}
-      <div className="relative text-center space-y-6 z-10">
-        {/* Logo */}
-        <img
-          src={logo}
-          alt="Logo"
-          className="w-64 h-64 mx-auto object-contain drop-shadow-lg"
-        />
-
-        {/* Heading with bouncing brand name */}
-        <h1 className="text-black text-4xl sm:text-5xl font-extrabold">
-          Welcome to{" "}
-          <span className="text-white inline-block animate-bounce">
-            FRESHMET
-          </span>
+    <div className="relative splash-container flex items-center justify-center h-screen">
+      {/* Center Content */}
+      <div className="absolute left-[50%] bottom-20 -translate-x-[50%] flex flex-col items-center">
+        <h1 className="text-white text-4xl sm:text-6xl tracking-[10px] font-bold">
+          FRESHMET
         </h1>
 
-        {/* Description */}
-        <p className="font-medium text-gray-700 mt-3 max-w-md mx-auto text-sm sm:text-base">
-          Get the best quality and most delicious grocery food in the world.
-          Everything you need is right here.
-        </p>
+        {/* Progress Bar Track */}
+        <div className="mt-6 w-20 h-4 p-[2px] border-2 border-white rounded-full overflow-hidden">
+          {/* Moving Stroke */}
+          <div className="h-full w-1/3  bg-gradient-to-r from-green-400 to-emerald-500 animate-slide"></div>
+        </div>
       </div>
     </div>
   );

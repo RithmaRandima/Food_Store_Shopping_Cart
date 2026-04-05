@@ -4,6 +4,14 @@
   scroll-behavior: smooth;
 }
 
+.splash-container {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.805)),
+    url("./assets/splash-bg.jpg");
+  background-size: cover;
+  background-position: bottom;
+}
+
 .product-hero {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.805)),
@@ -31,6 +39,19 @@
 
 .scale-up {
   animation: scaleIncrease 3s ease-in-out infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+.animate-slide {
+  animation: slide 0.65s linear infinite;
 }
 
 @keyframes scaleIncrease {

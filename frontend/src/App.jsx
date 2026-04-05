@@ -20,7 +20,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/home");
-    }, 800);
+    }, 1300);
 
     return () => clearTimeout(timer);
   }, []);
