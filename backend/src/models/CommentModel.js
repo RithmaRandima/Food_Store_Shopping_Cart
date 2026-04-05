@@ -16,6 +16,10 @@ const commentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    rating: {
+      type: String,
+      required: true,
+    },
     isApproved: { type: Boolean, default: false },
   },
   { timestamps: true },

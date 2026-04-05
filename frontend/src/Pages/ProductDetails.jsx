@@ -113,12 +113,12 @@ const ProductDetails = () => {
           </div>
 
           {/* rating stars */}
-          <div className="flex gap-0.5">
-            <FaStar className="text-[10px] text-black" />
-            <FaStar className="text-[10px] text-black" />
-            <FaStar className="text-[10px] text-black" />
-            <FaStar className="text-[10px] text-black" />
-            <FaStar className="text-[10px] text-black" />
+          <div className="flex gap-1 text-amber-500">
+            <FaStar className="text-[12px] " />
+            <FaStar className="text-[12px] " />
+            <FaStar className="text-[12px] " />
+            <FaStar className="text-[12px] " />
+            <FaStar className="text-[12px] " />
           </div>
 
           {/* status */}
@@ -221,7 +221,7 @@ const ProductDetails = () => {
           </div>
         ) : (
           // comment section
-          <Reviews priductId={productDetails._id} />
+          <Reviews productId={productDetails._id} />
         )}
       </div>
     </div>

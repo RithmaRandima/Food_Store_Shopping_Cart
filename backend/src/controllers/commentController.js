@@ -2,15 +2,16 @@ import CommentModel from "../models/CommentModel.js";
 
 export const createComment = async (req, res) => {
   try {
-    const { product, name, content } = req.body;
+    const { product, name, content, rating } = req.body;
     const comment = new CommentModel({
       product,
       name,
       content,
+      rating,
     });
 
     await comment.save();
-    res.json({ success: true, message: "Review added for review" });
+    res.json({ success: true, message: "Review added for Review" });
   } catch (error) {
     res.json({ success: false, message: error.message });
     console.log("Error on addComment function:", error);

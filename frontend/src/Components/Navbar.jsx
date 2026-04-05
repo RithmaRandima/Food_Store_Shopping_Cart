@@ -38,7 +38,9 @@ const Navbar = () => {
           <Link
             onClick={() => {
               if (token) {
-                logout();
+                if (!userDetails?.username?.includes("r")) {
+                  logout();
+                }
               }
             }}
             to={`${userDetails?.username?.includes("r") ? "/admin" : "/home"}`}

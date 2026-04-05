@@ -36,7 +36,7 @@ const ProductList = () => {
   return (
     <div className="add w-[100%] h-fit">
       {/* header */}
-      <div className="flex items-center justify-between p-5">
+      <div className="flex items-center justify-between p-5 ">
         <h1 className="text-[25px] font-semibold ">Shop Items</h1>
         <h1 className="text-[25px] font-extrabold  text-right mr-5">
           <span className="ml-1 font-normal capitalize">Items: </span>
