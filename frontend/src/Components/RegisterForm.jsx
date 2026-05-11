@@ -3,12 +3,9 @@ import React, { useState } from "react";
 import { FaFacebook, FaGooglePlus, FaInstagram } from "react-icons/fa";
 import bgImg from "../assets/register-bg.jpg";
 import Popupmessage from "./Popupmessage";
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const RegisterForm = ({ switchToSignin, popup, setPopup }) => {
-  const navigate = useNavigate();
-
   const [user, setUser] = useState({
     username: "",
     email: "",

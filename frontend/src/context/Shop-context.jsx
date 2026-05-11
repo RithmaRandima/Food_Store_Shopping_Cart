@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, use } from "react";
 import { itemList } from "../assets/ItemsData";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -118,9 +118,6 @@ export const ShopContextProvider = (props) => {
   // items count
   // Object.values(cartItems).reduce((sum, qty) => sum + qty, 0)
 
-  console.log(cartItems.length);
-  console.log(cartItems);
-
   const getTotalCartAmount = () => {
     let totalAmount = 0;
 
@@ -135,8 +132,6 @@ export const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
-  console.log(getTotalCartAmount());
-
   // ✅ Logout function (VERY useful)
   const logout = () => {
     setToken(null);
@@ -149,12 +144,12 @@ export const ShopContextProvider = (props) => {
   const contextValue = {
     cartItemCount,
     defaultCart,
-    navigate,
-    userDetails,
-    setUserDetails, // ✅ fixed
     token,
-    setToken,
+    userDetails,
     cartItems,
+    navigate,
+    setUserDetails, // ✅ fixed
+    setToken,
     addToCart,
     removeFromCart,
     updateCartItemCount,
