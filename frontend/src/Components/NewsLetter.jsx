@@ -54,7 +54,7 @@ const Newsletter = () => {
       {boxesData.map((box, index) => (
         <motion.div
           key={index}
-          className={`${box.color} w-[${box.width}px] h-[${box.height}px] absolute `}
+          className={`${box.color} w-[${box.width}px] h-[${box.height}px] absolute hidden md:block `}
           style={{
             top: `${box.baseOffset}px`,
             left: `${box.left}%`,

@@ -8,19 +8,38 @@ import {
 
 const Footer = () => {
   return (
-    <div className="w-[100%] text-white bg-green-500 ">
-      <div className="flex flex-col md:flex-row md:justify-between px-10 justify-center items-center py-4 gap-7 pb-[17px] bg-black text-white">
-        <p className="text-[10px] md:text-[8px] tracking-[4px]">
-          © 2024 <span className="text-green-500 font-bold">FRESHMET</span> ALL
-          RIGHTS RESERVED.
-        </p>
-        {/* logo Section */}
+    <footer className="w-full bg-black text-white mt-10">
+      {/* MAIN FOOTER */}
+      <div className="max-w-6xl mx-auto px-6 md:px-10 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* left */}
+        <div className="text-center md:text-left">
+          <h1 className="text-lg font-bold tracking-wide">
+            <span className="text-green-500">FRESHMET</span>
+          </h1>
+          <p className="text-[11px] text-gray-400 tracking-[2px] mt-1">
+            © 2024 ALL RIGHTS RESERVED
+          </p>
+        </div>
 
-        <p className="hidden md:block text-[10px] tracking-[4px]">
-          Buy Helthy and Good Products
+        {/* middle text */}
+        <p className="text-[11px] md:text-[12px] text-gray-300 tracking-[3px] text-center">
+          Buy Healthy & Fresh Organic Products
         </p>
+
+        {/* social icons */}
+        <div className="flex gap-4 text-gray-400">
+          <FaFacebook className="hover:text-green-500 cursor-pointer transition" />
+          <FaInstagram className="hover:text-green-500 cursor-pointer transition" />
+          <FaTwitter className="hover:text-green-500 cursor-pointer transition" />
+          <FaGooglePlusG className="hover:text-green-500 cursor-pointer transition" />
+        </div>
       </div>
-    </div>
+
+      {/* BOTTOM STRIP */}
+      <div className="border-t border-gray-800 py-3 text-center text-[10px] text-gray-500 tracking-[2px]">
+        Made with ❤️ for fresh grocery experience
+      </div>
+    </footer>
   );
 };
 
