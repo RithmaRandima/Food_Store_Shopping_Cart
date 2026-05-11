@@ -73,7 +73,7 @@ const DealsSection = () => {
   const style = { fontFamily: "Great Vibes, cursive" };
 
   return (
-    <div className="relative h-[80vh]  overflow-hidden flex">
+    <div className="hidden  relative h-[80vh]  overflow-hidden md:flex">
       {/* Left side - static content */}
       <div className="w-1/2 flex flex-col items-center justify-center bg-[#6a9c06] relative">
         {/* Top Stroke Section */}

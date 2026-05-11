@@ -6,7 +6,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import ShopContext from "../context/Shop-context";
 import { NavLink } from "react-router-dom";
 const Navbar = () => {
-  const { userDetails, token, cartItemCount, logout } = useContext(ShopContext);
+  const { userDetails, cartItemCount, logout } = useContext(ShopContext);
 
   const [openProfile, setOpenProfile] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
