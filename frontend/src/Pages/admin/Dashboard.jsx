@@ -129,228 +129,155 @@ const Dashboard = () => {
   }));
 
   return (
-    <div className="p-6 h-fit w-full">
-      {/* Top Bar */}
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Dashboard</h2>
+    <div className="p-3 sm:p-6 h-fit w-full bg-gray-50">
+      {/* ================= TOP BAR ================= */}
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-800">
+          Dashboard
+        </h2>
+
         <input
           type="text"
           placeholder="Search..."
-          className=" px-4 py-2 rounded-full bg-white outline-none w-[350px] shadow-sm"
+          className="px-4 py-2 rounded-full bg-white outline-none w-full sm:w-[350px] shadow-sm border border-gray-100"
         />
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 mb-8">
+      {/* ================= STATS ================= */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5 mb-8">
         {stats.map((item, index) => (
           <div
             key={index}
-            className="relative p-2 rounded-2xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200"
+            className="p-3 sm:p-4 rounded-2xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition"
           >
-            <div className="flex items-end ">
+            <div className="flex items-center gap-3">
               <div
-                className={`w-9 h-9  flex items-center justify-center rounded-full text-white mb-4 ${item.color}`}
+                className={`w-9 h-9 flex items-center justify-center rounded-full text-white ${item.color}`}
               >
-                <span className="text-[19px]">{item.icon}</span>
+                <span className="text-[18px]">{item.icon}</span>
               </div>
-              <div className="ml-2">
-                <h3 className="text-[15px] font-bold">{item.title}</h3>
-                <p className="text-[28px] font-extrabold -mt-2 text-gray-800">
+
+              <div>
+                <h3 className="text-[13px] sm:text-[15px] font-bold">
+                  {item.title}
+                </h3>
+
+                <p className="text-[22px] sm:text-[28px] font-extrabold text-gray-800 -mt-1">
                   {item.count}
                 </p>
               </div>
             </div>
 
-            <p className="text-xs text-green-600 mt-2 text-right">
+            <p className="text-[11px] text-green-600 mt-2 text-right">
               +12% this week
             </p>
           </div>
         ))}
       </div>
 
-      {/* Charts */}
-      <div className="grid md:grid-cols-5 gap-6 mb-8">
-        {/* Products Chart */}
-        <div className="bg-white border border-slate-200 py-5 col-span-2 rounded-xl shadow-md">
-          <h3 className="text-lg font-semibold mb-4 ml-3">Category Stock</h3>
+      {/* ================= CHARTS ================= */}
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 mb-8">
+        {/* CATEGORY CHART */}
+        <div className="bg-white border border-gray-100 p-4 sm:p-5 rounded-xl shadow-sm lg:col-span-2">
+          <h3 className="text-base sm:text-lg font-semibold mb-4">
+            Category Stock
+          </h3>
+
           <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={categoryData} barCategoryGap="30%">
-              <XAxis
-                dataKey="name"
-                tick={{ fontSize: 12, fill: "#6b7280" }}
-                axisLine={false}
-                tickLine={false}
-              />
-              <YAxis
-                tick={{ fontSize: 12, fill: "#6b7280" }}
-                axisLine={false}
-                tickLine={false}
-              />
-              <Tooltip
-                contentStyle={{
-                  borderRadius: "10px",
-                  border: "none",
-                  boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
-                }}
-                cursor={{ fill: "rgba(0,0,0,0.05)" }}
-              />
-              <Bar
-                dataKey="value"
-                fill="#16a34a"
-                barSize={25}
-                className="bg-amber-200"
-              />
+            <BarChart data={categoryData}>
+              <XAxis dataKey="name" tick={{ fontSize: 11 }} />
+              <YAxis tick={{ fontSize: 11 }} />
+              <Tooltip />
+              <Bar dataKey="value" fill="#16a34a" barSize={22} />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
-        {/* sales Chart */}
-        <div className="bg-white border border-slate-200 col-span-3 p-5 rounded-xl shadow-md">
-          <h3 className="text-lg font-semibold mb-4">Weekly Sales</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart
-              data={salesData}
-              margin={{ top: 20, right: 20, bottom: 20, left: 0 }}
-            >
-              {/* Gradient fill for area under the line */}
-              <defs>
-                <linearGradient id="salesGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#22c55e" stopOpacity={0.4} />
-                  <stop offset="100%" stopColor="#22c55e" stopOpacity={0} />
-                </linearGradient>
-              </defs>
+        {/* SALES CHART */}
+        <div className="bg-white border border-gray-100 p-4 sm:p-5 rounded-xl shadow-sm lg:col-span-3">
+          <h3 className="text-base sm:text-lg font-semibold mb-4">
+            Weekly Sales
+          </h3>
 
-              {/* X Axis */}
-              <XAxis
-                dataKey="name"
-                tick={{ fontSize: 12, fill: "#6b7280" }}
-                axisLine={false}
-                tickLine={false}
-                padding={{ left: 10, right: 10 }}
-              />
+          <ResponsiveContainer width="100%" height={280}>
+            <LineChart data={salesData}>
+              <XAxis dataKey="name" tick={{ fontSize: 11 }} />
+              <YAxis tick={{ fontSize: 11 }} />
+              <Tooltip />
 
-              {/* Y Axis */}
-              <YAxis
-                tick={{ fontSize: 12, fill: "#6b7280" }}
-                axisLine={false}
-                tickLine={false}
-                padding={{ top: 10, bottom: 10 }}
-              />
-
-              {/* Tooltip */}
-              <Tooltip
-                contentStyle={{
-                  borderRadius: "12px",
-                  border: "none",
-                  boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-                  backgroundColor: "#ffffff",
-                  padding: "10px 14px",
-                }}
-                cursor={{
-                  stroke: "#22c55e",
-                  strokeWidth: 2,
-                  strokeDasharray: "5 5",
-                }}
-              />
-
-              {/* Main Line */}
               <Line
                 type="monotone"
                 dataKey="sales"
                 stroke="#16a34a"
                 strokeWidth={3}
-                dot={{
-                  r: 4,
-                  stroke: "#16a34a",
-                  strokeWidth: 2,
-                  fill: "#ffffff",
-                }}
-                activeDot={{
-                  r: 6,
-                  fill: "#16a34a",
-                  stroke: "#ffffff",
-                  strokeWidth: 2,
-                }}
-              />
-
-              {/* Gradient Area */}
-              <Line
-                type="monotone"
-                dataKey="sales"
-                stroke="transparent"
-                fill="url(#salesGradient)"
-                dot={false}
+                dot={{ r: 3 }}
               />
             </LineChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      {/*Products details */}
-      <div className="grid md:grid-cols-7 gap-3 mb-8">
-        {/*Resent Selling Products Table */}
-        <div className="border border-slate-200 h-fit col-span-2 rounded-xl shadow-md mb-8">
-          <h3 className="text-xl font-semibold mb-4 p-4 pb-0">
-            Recent Products
-          </h3>
-          <div className="w-full text-left">
+      {/* ================= TABLE SECTION ================= */}
+      <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
+        {/* RECENT PRODUCTS */}
+        <div className="border border-gray-100 bg-white rounded-xl shadow-sm lg:col-span-2">
+          <h3 className="text-lg font-semibold p-4 pb-2">Recent Products</h3>
+
+          <div>
             {list.slice(10, 15).map((item, idx) => (
               <AdminProductCard key={idx} item={item} />
             ))}
           </div>
         </div>
 
-        {/*Top Selling Products Table */}
-        <div className="border border-slate-200 h-fit col-span-2 rounded-xl shadow-md mb-8">
-          <h3 className="text-xl font-semibold mb-4 p-4 pb-0">
+        {/* TOP PRODUCTS */}
+        <div className="border border-gray-100 bg-white rounded-xl shadow-sm lg:col-span-2">
+          <h3 className="text-lg font-semibold p-4 pb-2">
             Top Selling Products
           </h3>
-          <div className="w-full text-left">
+
+          <div>
             {list.slice(0, 5).map((item, idx) => (
               <AdminProductCard key={idx} item={item} />
             ))}
           </div>
         </div>
 
-        {/* Comments Section */}
-        <div className="bg-white border border-slate-200 p-5 col-span-3 rounded-xl shadow-md mb-8 h-[500px]">
+        {/* COMMENTS */}
+        <div className="border border-gray-100 bg-white rounded-xl shadow-sm lg:col-span-3 p-4">
           <div
-            className="flex items-center justify-between cursor-pointer"
+            className="flex justify-between items-center cursor-pointer"
             onClick={() => setShowComments(!showComments)}
           >
-            <h3 className="text-xl font-semibold flex items-center gap-2">
+            <h3 className="text-lg font-semibold flex items-center gap-2">
               <FaComment /> User Comments
             </h3>
-            <span className="text-gray-400">{showComments ? "▲" : "▼"}</span>
+
+            <span>{showComments ? "▲" : "▼"}</span>
           </div>
 
           {showComments && (
-            <div className="mt-4 max-h-100 overflow-y-auto space-y-4 ">
+            <div className="mt-4 max-h-[400px] overflow-y-auto space-y-3">
               {comments.length === 0 && (
-                <p className="text-gray-400">No comments yet</p>
+                <p className="text-gray-400 text-sm">No comments yet</p>
               )}
+
               {comments.map((comment, idx) => (
                 <div
                   key={idx}
-                  className="p-3 bg-gray-50 rounded-lg border border-gray-100 shadow-sm relative"
+                  className="p-3 bg-gray-50 rounded-lg border border-gray-100"
                 >
-                  {/* details */}
-                  <div className="flex justify-between items-center mb-1">
-                    <p>
-                      <p className="font-semibold text-gray-700">
-                        {comment.name}
-                      </p>
+                  <div className="flex justify-between mb-1">
+                    <p className="font-semibold text-gray-700 text-sm">
+                      {comment.name}
                     </p>
-                    {/* date */}
+
                     <span className="text-xs text-gray-400">
                       {new Date(comment.createdAt).toLocaleString()}
                     </span>
                   </div>
 
-                  {/* description */}
-                  <p className="text-xs text-gray-500 mt-2">
-                    {comment.content}
-                  </p>
+                  <p className="text-xs text-gray-500">{comment.content}</p>
                 </div>
               ))}
             </div>

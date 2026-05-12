@@ -68,53 +68,72 @@ const AdminCommentItem = ({ comment, fetchReviews, index }) => {
 
   console.log(comment);
   return (
-    <tr className="order-y border-gray-300">
-      <td className="flex">
-        <p className=" pl-3 text-[11px] font-bold">{index + 1}</p>
-      </td>
-      <td className="px-6 py-4">
-        <p className="mb-3">
-          <b className="font-medium text-gray-600 ">Product</b> :{" "}
-          {product?.name}
-        </p>
-        <b className="font-medium text-gray-600">Name</b> : {comment.name}
-        <br />
-        <b className="font-medium text-gray-600">Comment</b> : {comment.content}
-        <br />
-        <p className="mt-3 text-[12px] text-right">{BlogDate}</p>
+    <tr className="border-b border-gray-200 hover:bg-gray-50 transition">
+      {/* INDEX */}
+      <td className="align-top px-2 sm:px-3 py-4 text-[11px] font-bold text-gray-500">
+        {index + 1}
       </td>
 
-      <td className="px-6 py-4 max-sm:hidden text-center  ">
-        <p
-          className={`px-[6px] text-[12px] text-black font-semibold py-[2px] ${categoryColors[product.category] || "bg-gray-200"}`}
+      {/* PRODUCT INFO */}
+      <td className="px-2 sm:px-6 py-4">
+        <p className="mb-2 text-[13px] sm:text-[15px]">
+          <span className="font-semibold text-gray-600">Product:</span>{" "}
+          {product?.name}
+        </p>
+
+        <p className="text-[13px] sm:text-[14px]">
+          <span className="font-semibold text-gray-600">Name:</span>{" "}
+          {comment.name}
+        </p>
+
+        <p className="text-[13px] sm:text-[14px] mt-1">
+          <span className="font-semibold text-gray-600">Comment:</span>{" "}
+          {comment.content}
+        </p>
+
+        <p className="mt-3 text-[11px] text-gray-400 text-right">{BlogDate}</p>
+      </td>
+
+      {/* CATEGORY */}
+      <td className=" sm:table-cell px-6 py-4 text-center">
+        <span
+          className={`px-2 py-1 rounded-full text-[11px] font-semibold ${
+            categoryColors[product.category] || "bg-gray-200 text-gray-700"
+          }`}
         >
           {product.category}
-        </p>
+        </span>
       </td>
-      <td className="px-6 py-4 max-sm:hidden w-[150px] text-center">
-        {moment(BlogDate).fromNow()}
+
+      {/* DATE */}
+
+      <td className="hidden sm:table-cell px-6 py-4 text-center text-gray-500 text-sm">
+        {moment(createdAt).fromNow()}
       </td>
-      <td className="px-6 py-4 text-center">
-        <div className="inline-flex items-center gap-4 ">
+
+      {/* STATUS / APPROVE */}
+      <td className="hidden sm:table-cell px-2 sm:px-6 py-4 text-center">
+        <div className="flex justify-center items-center">
           {comment.isApproved ? (
-            <IoCheckmark
-              // onClick={approveComment}
-              className="hover:scale-110 transition-all cursor-pointer"
-            />
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600">
+              <IoCheckmark size={18} />
+            </div>
           ) : (
-            <p
-              className="text-xs border border-green-600 bg-green-100 text-green-600 rounded-full px-3 py-1 cursor-pointer"
+            <button
               onClick={() => approveComment(_id)}
+              className="text-[11px] sm:text-xs bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-600 transition"
             >
               Approve
-            </p>
+            </button>
           )}
         </div>
       </td>
-      <td className="px-6 py-4 max-sm:hidden">
+
+      {/* DELETE */}
+      <td className=" sm:table-cell px-6 py-4 text-center">
         <FaTrash
           onClick={deleteComment}
-          className="hover:text-red-400 hover:scale-110 transition-all cursor-pointer mx-auto"
+          className="text-gray-500 hover:text-red-500 hover:scale-110 transition cursor-pointer mx-auto"
         />
       </td>
     </tr>
