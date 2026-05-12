@@ -55,24 +55,124 @@ const RegisterForm = ({ switchToSignin, popup, setPopup }) => {
   };
 
   return (
-    <div className="w-[800px] h-[500px] flex  shadow-[1px_1px_5px_rgba(0,0,0,0.9)]  bg-white">
-      {/* Left Side */}
-      <div className="flex-1 flex flex-col relative">
-        <div className="text-[#6a9c06] p-4 font-extrabold text-[37px] pb-1\2">
-          <h1>Register</h1>
+    <>
+      {/* ================= DESKTOP VIEW (UNCHANGED) ================= */}
+      <div className="hidden md:flex w-[800px] h-[500px] shadow-[1px_1px_5px_rgba(0,0,0,0.9)] bg-white">
+        {/* Left Side */}
+        <div className="flex-1 flex flex-col relative">
+          <div className="text-[#6a9c06] p-4 font-extrabold text-[37px] pb-1">
+            <h1>Register</h1>
+          </div>
+
+          <form onSubmit={handelSubmit}>
+            {/* username */}
+            <div className="m-5 my-2">
+              <label className="block text-[17px] font-bold text-[#6a9c06]">
+                Username
+              </label>
+              <input
+                name="username"
+                type="text"
+                placeholder="Enter Username"
+                value={user.username}
+                className="w-full my-2 px-3 py-2 rounded-4xl border text-black border-[#6a9c06]"
+                onChange={(e) => {
+                  setUser({ ...user, [e.target.name]: e.target.value });
+                  setPopup({ ...popup, show: false });
+                }}
+              />
+            </div>
+
+            {/* email */}
+            <div className="m-5 my-2">
+              <label className="block text-[17px] font-bold text-[#6a9c06]">
+                Email
+              </label>
+              <input
+                name="email"
+                type="text"
+                placeholder="Enter Email"
+                value={user.email}
+                className="w-full my-2 px-3 py-2 rounded-4xl border text-black border-[#6a9c06]"
+                onChange={(e) => {
+                  setUser({ ...user, [e.target.name]: e.target.value });
+                  setPopup({ ...popup, show: false });
+                }}
+              />
+            </div>
+
+            {/* password */}
+            <div className="m-5 my-2">
+              <label className="block text-[17px] font-bold text-[#6a9c06]">
+                Password
+              </label>
+              <input
+                name="password"
+                type="text"
+                placeholder="Enter Password"
+                value={user.password}
+                className="w-full my-2 px-3 py-2 rounded-4xl border text-black border-[#6a9c06]"
+                onChange={(e) =>
+                  setUser({ ...user, [e.target.name]: e.target.value })
+                }
+              />
+            </div>
+
+            {/* button */}
+            <div>
+              <button
+                className="mb-3 mt-2 bg-[#6a9c06] text-[18px] text-white border-0 rounded-l-none p-1 pr-10 -ml-3 shadow-[1px_1px_5px_rgba(0,0,0,0.9)] font-extrabold"
+                type="submit"
+              >
+                Register User
+              </button>
+            </div>
+          </form>
+
+          {/* footer */}
+          <div className="text-center text-black font-bold tracking-[2px] text-[12px]">
+            <p>
+              Already have an account{" "}
+              <span
+                className="text-[#6a9c06] font-extrabold cursor-pointer"
+                onClick={() => switchToSignin(false)}
+              >
+                Sign in
+              </span>
+            </p>
+
+            <div className="flex justify-center items-center mt-4 gap-5">
+              <FaGooglePlus className="text-2xl text-black" />
+              <FaFacebook className="text-2xl text-black" />
+              <FaInstagram className="text-2xl text-black" />
+            </div>
+          </div>
         </div>
-        <form onSubmit={handelSubmit}>
-          {/* input username */}
-          <div className="m-5 my-2">
-            <label className="block text-[17px] font-bold text-[#6a9c06]">
-              Username
-            </label>
+
+        {/* Right Side */}
+        <div className="flex-1 flex items-center justify-center p-2 relative">
+          <div className="w-full h-[85vh] absolute shadow-[1px_1px_5px_rgba(0,0,0,0.9)]">
+            <img src={bgImg} className="h-full w-full object-cover" alt="" />
+          </div>
+        </div>
+      </div>
+
+      {/* ================= MOBILE VIEW (NEW) ================= */}
+      <div className="flex md:hidden flex-col min-h-screen bg-white px-6 py-8 w-full">
+        <h1 className="text-[#6a9c06] text-3xl font-extrabold mb-6">
+          Register
+        </h1>
+
+        <form onSubmit={handelSubmit} className="flex flex-col gap-5">
+          {/* username */}
+          <div>
+            <label className="block font-bold text-[#6a9c06]">Username</label>
             <input
-              name={"username"}
+              name="username"
               type="text"
               placeholder="Enter Username"
               value={user.username}
-              className="w-full my-2 px-3 py-2 rounded-4xl border text-black border-[#6a9c06]"
+              className="w-full mt-2 px-3 py-2 border border-[#6a9c06] text-black rounded-md"
               onChange={(e) => {
                 setUser({ ...user, [e.target.name]: e.target.value });
                 setPopup({ ...popup, show: false });
@@ -80,17 +180,15 @@ const RegisterForm = ({ switchToSignin, popup, setPopup }) => {
             />
           </div>
 
-          {/* input email */}
-          <div className="m-5 my-2">
-            <label className="block text-[17px] font-bold text-[#6a9c06]">
-              Email{" "}
-            </label>
+          {/* email */}
+          <div>
+            <label className="block font-bold text-[#6a9c06]">Email</label>
             <input
-              name={"email"}
+              name="email"
               type="text"
               placeholder="Enter Email"
               value={user.email}
-              className="w-full my-2 px-3 py-2 rounded-4xl border text-black border-[#6a9c06]"
+              className="w-full mt-2 px-3 py-2 border border-[#6a9c06] text-black rounded-md"
               onChange={(e) => {
                 setUser({ ...user, [e.target.name]: e.target.value });
                 setPopup({ ...popup, show: false });
@@ -98,17 +196,15 @@ const RegisterForm = ({ switchToSignin, popup, setPopup }) => {
             />
           </div>
 
-          {/* input password */}
-          <div className="m-5 my-2">
-            <label className="block text-[17px] font-bold text-[#6a9c06]">
-              Password
-            </label>
+          {/* password */}
+          <div>
+            <label className="block font-bold text-[#6a9c06]">Password</label>
             <input
-              name={"password"}
-              type="text"
+              name="password"
+              type="password"
               placeholder="Enter Password"
               value={user.password}
-              className="w-full my-2 px-3 py-2 rounded-4xl border text-black border-[#6a9c06]"
+              className="w-full mt-2 px-3 py-2 border border-[#6a9c06] text-black rounded-md"
               onChange={(e) =>
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
@@ -116,41 +212,32 @@ const RegisterForm = ({ switchToSignin, popup, setPopup }) => {
           </div>
 
           {/* button */}
-          <div>
-            <button
-              className="mb-3 mt-2 bg-[#6a9c06] text-[18px] text-white btn-primary border-0 rounded-l-none p-1 pr-10 -ml-3  shadow-[1px_1px_5px_rgba(0,0,0,0.9)] font-extrabold "
-              type="submit"
-            >
-              Register User
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="bg-black text-white py-2 rounded-md font-semibold hover:bg-gray-800 transition"
+          >
+            Register User
+          </button>
         </form>
 
-        <div className="text-center text-black font-bold tracking-[2px] text-[12px]">
-          <p>
-            All ready have a account{" "}
-            <span
-              className="text-[#6a9c06] font-extrabold cursor-pointer"
-              onClick={() => switchToSignin(false)}
-            >
-              Sign in
-            </span>
-          </p>
-          <div className="flex justify-center items-center mt-4 gap-5">
-            <FaGooglePlus className="text-2xl text-black" />
-            <FaFacebook className="text-2xl text-black" />
-            <FaInstagram className="text-2xl text-black" />
-          </div>
-        </div>
-      </div>
+        {/* footer */}
+        <p className="text-center text-sm mt-6">
+          Already have an account{" "}
+          <span
+            className="text-[#6a9c06] font-bold cursor-pointer"
+            onClick={() => switchToSignin(false)}
+          >
+            Sign in
+          </span>
+        </p>
 
-      {/* Right Side */}
-      <div className="flex-1 flex items-center justify-center p-2 relative">
-        <div className="w-full h-[85vh] absolute shadow-[1px_1px_5px_rgba(0,0,0,0.9)]">
-          <img src={bgImg} className="h-full w-full object-cover" alt="" />
+        <div className="flex justify-center items-center mt-6 gap-5">
+          <FaGooglePlus className="text-2xl text-black" />
+          <FaFacebook className="text-2xl text-black" />
+          <FaInstagram className="text-2xl text-black" />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

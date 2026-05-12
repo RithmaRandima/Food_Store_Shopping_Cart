@@ -48,50 +48,53 @@ const About = () => {
       </div>
 
       {/* ================= MOBILE VIEW (NEW CLEAN UI) ================= */}
-      <div className="md:hidden flex flex-col items-center text-center px-5 py-10">
-        {/* floating background glow */}
-        <div className="absolute w-[250px] h-[250px] bg-green-200 blur-3xl opacity-40 rounded-full top-20"></div>
+      <div className="">
+        <Navbar />
+        <div className="md:hidde flex flex-col items-center text-center px-5 py-10">
+          {/* floating background glow */}
+          <div className="absolute w-[250px] h-[250px] bg-green-200 blur-3xl opacity-40 rounded-full top-20"></div>
 
-        {/* img 02 */}
-        <div className="absolute w-[320px] pl-2 h-[320px] left-10 items-center top-70 flex">
-          <img
-            src={img2}
-            alt=""
-            className="w-full h-full object-cover opacity-35"
-          />
-        </div>
+          {/* img 02 */}
+          <div className="absolute w-[320px] pl-2 h-[320px] left-10 items-center top-70 flex">
+            <img
+              src={img2}
+              alt=""
+              className="w-full h-full object-cover opacity-35"
+            />
+          </div>
 
-        {/* img 03 */}
-        <div className="absolute w-[340px] pl-2 h-[340px] right-0 items-center top-230 flex">
-          <img
-            src={img3}
-            alt=""
-            className="w-full h-full object-cover opacity-30"
-          />
-        </div>
+          {/* img 03 */}
+          <div className="absolute w-[340px] pl-2 h-[340px] right-0 items-center top-230 flex">
+            <img
+              src={img3}
+              alt=""
+              className="w-full h-full object-cover opacity-30"
+            />
+          </div>
 
-        {/* img 04 */}
-        <div className="absolute -left-20 -z-1 w-[250px] pl-2 h-[250px] items-center -bottom-10 flex">
-          <img
-            src={img4}
-            alt=""
-            className="w-full h-full object-cover opacity-40"
-          />
-        </div>
+          {/* img 04 */}
+          <div className="absolute -left-20 -z-1 w-[250px] pl-2 h-[250px] items-center -bottom-10 flex">
+            <img
+              src={img4}
+              alt=""
+              className="w-full h-full object-cover opacity-40"
+            />
+          </div>
 
-        {/* title */}
-        <h1 className="text-4xl font-extrabold text-black">About Us</h1>
+          {/* title */}
+          <h1 className="text-4xl font-extrabold text-black">About Us</h1>
 
-        {/* description */}
-        <p className="text-sm text-gray-600 mt-3 leading-relaxed">
-          Grocery store offers fresh produce, quality meats and essentials at
-          affordable prices. We support local farmers and ensure quality in
-          every product.
-        </p>
+          {/* description */}
+          <p className="text-sm text-gray-600 mt-3 leading-relaxed">
+            Grocery store offers fresh produce, quality meats and essentials at
+            affordable prices. We support local farmers and ensure quality in
+            every product.
+          </p>
 
-        {/* feature section */}
-        <div className="w-full mt-8">
-          <FeatureSection />
+          {/* feature section */}
+          <div className="w-full mt-8">
+            <FeatureSection />
+          </div>
         </div>
       </div>
     </div>

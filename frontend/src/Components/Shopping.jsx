@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { itemList } from "../assets/ItemsData";
 import ItemCard from "./ItemCard";
 import img1 from "../assets/img-3.PNG";
 import placeholderImage from "../assets/placeholder-image-3.png";
@@ -34,18 +33,18 @@ const Shopping = () => {
   }, []);
 
   return (
-    <div className="relative py-5 pb-20 mt-15">
+    <div className="relative py-5 pb-10 mt-15  min-h-[120vh]">
       {/* bg img */}
       <img
         src={img1}
-        className="absolute left-[50%] -translate-x-[50%]  top-[230px] opacity-40 w-[750px] h-[750px] object-cover"
+        className="absolute left-[50%] -translate-x-[50%] top-[350px]  md:top-[230px] opacity-30 md:opacity-40 w-[600px] h-[600px] md:w-[550px] md:h-[500px] object-cover"
         alt=""
       />
 
       {/* placeholder img */}
       <img
         src={placeholderImage}
-        className="absolute -right-5  -top-[40px] opacity-70 w-[320px] h-[320px] object-contain"
+        className="absolute -right-5 -top-[70px]  md:-top-[40px] opacity-20 md:opacity-70 w-[320px] h-[320px] object-contain"
         alt=""
       />
 
@@ -54,17 +53,18 @@ const Shopping = () => {
         <h1 className="font-extrabold text-[40px] text-black text-center">
           BESTSELLER <span className="text-green-600">PROCUDTS</span>
         </h1>
-        <p className="font-bold mt-1 mb-5 w-[400px] mx-auto text-center">
+        <p className="font-bold mt-1 mb-5 w-[350px] md:w-[400px] mx-auto text-center">
           Get the besr quality and most delicious grocery food in the world, you
           can get the all from here
         </p>
 
         {/* button section */}
-        <div className="my-3 pl-10 mt-10 mb-5">
+        <div className="my-3 pl-0 md:pl-10 mt-10 md:mb-5 mb-2">
           {btnCategories.map((category, index) => {
             return (
               <button
                 key={index}
+                style={{ marginBottom: "10px" }}
                 className={
                   selected === category ? "btn-primary active" : "btn-primary"
                 }
@@ -77,7 +77,7 @@ const Shopping = () => {
         </div>
 
         {/* item section */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto w-[75%] gap-10 mt-15">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto w-[90%] md:w-[75%] gap-5 md:gap-10 mt-15">
           {list
             .filter((item) => item.category === selected) // filter first
             .map((item, index) => ({ ...item, index })) // add index

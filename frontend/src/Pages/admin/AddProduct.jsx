@@ -237,7 +237,7 @@ const AddProduct = () => {
                     className="w-full h-full object-cover rounded-xl object-top"
                   />
                 ) : (
-                  <IoIosAddCircle className="text-[56px] text-[#6a9c06]/50 hover:text-[#ff007b]" />
+                  <IoIosAddCircle className="text-[56px] text-[#6a9c06]/50 hover:text-[#6a9c06]" />
                 )}
               </label>
               <input

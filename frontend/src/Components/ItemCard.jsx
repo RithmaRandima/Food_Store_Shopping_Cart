@@ -24,7 +24,7 @@ const ItemCard = ({ item }) => {
       >
         {/* discount section */}
         {item.discount !== 0 && (
-          <div className="scale-up flex absolute -top-8 -right-4 flex-col items-center justify-center rounded-full bg-red-500 w-[55px] h-[55px]">
+          <div className="scale-up flex absolute -top-10 md:-top-8 -right-2 md:-right-4 flex-col items-center justify-center rounded-full bg-red-500 z-10 w-[45px] h-[45px] md:w-[55px] md:h-[55px]">
             <p className=" text-[15px] font-extrabold cursor-pointer text-white">
               {item.discount}%
             </p>
@@ -37,7 +37,7 @@ const ItemCard = ({ item }) => {
           <img
             src={`http://localhost:5001/images/${item.image}`}
             alt={item.name}
-            className="h-50 w-full object-contain"
+            className="md:h-50 h-45 md:w-full w-[90%] mx-auto object-contain"
           />
         </div>
 
@@ -71,24 +71,24 @@ const ItemCard = ({ item }) => {
 
         {/* item details */}
         <div className="mt-15">
-          <h1 className="font-bold text-[20px]">{item.name}</h1>
-          <p className="text-[10px] uppercase tracking-[4px] font-bold text-gray-500">
+          <h1 className="font-bold text-[18px] md:text-[20px]">{item.name}</h1>
+          <p className="text-[10px] uppercase tracking-[2px] md:tracking-[4px] font-bold text-gray-500">
             {item.category}
           </p>
           <p className="absolute bordr px-2 rounded-full text-[14px] uppercase font-bold bg-white text-black my-1 top-1 left-1">
             {item.option}
           </p>
           {/* price section */}
-          <p className="mt-2 font-bold">
-            <span className="font-extrabold mr-2 text-[19px] text-green-500">
+          <p className="mt-5 md:mt-2 font-bold">
+            <span className="font-extrabold mr-2 text-[16px] md:text-[19px] text-green-500">
               ${Number(item.price).toFixed(2)}
             </span>
-            <span className="text-slate-400/70 line-through mr-1 text-[16px]">
+            <span className="text-slate-400/70 line-through mr-1 text-[14px] md:text-[16px]">
               ${Number(oldPrice).toFixed(2)}
             </span>
           </p>
           <button
-            className="absolute bottom-1 p-2 ronded-tl-2xl right-3 bg-green-500 rounded-full text-white my-2 text-[14px]
+            className="absolute bottom-6 md:bottom-1 p-2 ronded-tl-2xl right-3 bg-green-500 rounded-full text-white my-2 text-[14px]
           hover:scale-105
           duration-150
           transition-all

@@ -54,11 +54,10 @@ const ProductDetails = () => {
     <div className="">
       <Navbar />
       {/* top */}
-      <div className="w-full h-[100vh] flex">
+      <div className="w-full min-h-screen flex flex-col lg:flex-row">
         {/* left section */}
-        <div className="w-full h-full p-7 relative">
-          {/* image container */}
-          <div className="w-full h-full border border-gray-300 rounded-[10px] relative">
+        <div className="w-full lg:w-1/2 h-[50vh] mx-auto lg:h-auto p-4 sm:p-7 relative">
+          <div className="w-[330px] mx-auto md:w-full h-full border border-gray-300 rounded-[10px] relative">
             <img
               src={`http://localhost:5001/images/${productDetails.image}`}
               className="w-full h-full object-contain"
@@ -66,126 +65,124 @@ const ProductDetails = () => {
             />
           </div>
 
-          {/* discount section */}
           {productDetails.discount !== 0 && (
-            <div className="scale-up flex absolute top-10 right-10 rotate-12 flex-col items-center justify-center rounded-full bg-red-500 w-[80px] h-[80px]">
-              <p className=" text-[25px] font-extrabold cursor-pointer text-white">
+            <div className="scale-up flex absolute top-5 right-5 sm:top-10 sm:right-10 rotate-12 flex-col items-center justify-center rounded-full bg-red-500 w-[60px] h-[60px] sm:w-[80px] sm:h-[80px]">
+              <p className="text-[18px] sm:text-[25px] font-extrabold text-white">
                 {productDetails.discount}%
               </p>
-              <p className="text-[19px] font-extrabold text-white -mt-3">OFF</p>
+              <p className="text-[14px] sm:text-[19px] font-extrabold text-white -mt-2 sm:-mt-3">
+                OFF
+              </p>
             </div>
           )}
         </div>
 
-        {/* right Section */}
-        <div className="relative w-full h-full p-7">
-          {/* product details */}
-
+        {/* right section */}
+        <div className="relative w-full lg:w-1/2 h-full p-4 sm:p-7">
           {/* category */}
           <p
-            className={`text-[15px] mt-5  tracking-[1px]  ${categoryColors[productDetails.category] || "bg-gray-200"}`}
+            className={`text-[13px] sm:text-[15px] mt-3 sm:mt-5 tracking-[1px] ${
+              categoryColors[productDetails.category] || "bg-gray-200"
+            }`}
           >
             {productDetails.category}
           </p>
 
-          {/* name and favourite */}
-          <div className="flex items-center -mt-2">
-            <h1 className="font-semibold  text-[40px]">
+          {/* name + heart */}
+          <div className="flex items-start sm:items-center justify-between flex-wrap gap-2 mt-2">
+            <h1 className="font-semibold text-[28px] sm:text-[40px]">
               {productDetails.name}
             </h1>
-            <div className="ml-2  text-[30px]">
-              {clickHeart === false ? (
-                <FaRegHeart
-                  className=""
-                  onClick={() => {
-                    setClickHeart(true);
-                  }}
-                />
+
+            <div className="mr-3 text-[35px] cursor-pointer">
+              {clickHeart ? (
+                <FaHeart onClick={() => setClickHeart(false)} />
               ) : (
-                <FaHeart
-                  className=""
-                  onClick={() => {
-                    setClickHeart(false);
-                  }}
-                />
+                <FaRegHeart onClick={() => setClickHeart(true)} />
               )}
             </div>
           </div>
 
-          {/* rating stars */}
-          <div className="flex gap-1 text-amber-500">
-            <FaStar className="text-[12px] " />
-            <FaStar className="text-[12px] " />
-            <FaStar className="text-[12px] " />
-            <FaStar className="text-[12px] " />
-            <FaStar className="text-[12px] " />
+          {/* rating */}
+          <div className="flex gap-1 text-amber-500 mt-2">
+            {[...Array(5)].map((_, i) => (
+              <FaStar key={i} className="text-[12px]" />
+            ))}
           </div>
 
           {/* status */}
           <p
-            className={`text-[11px] border w-fit px-3 py-[2px] rounded-full my-6   ${productDetails.status === "In Stock" ? "bg-green-300/20 border-green-500 text-green-500" : "bg-red-300/20 border-red-500 text-red-500"}`}
+            className={`text-[10px] sm:text-[11px] border w-fit px-3 py-[2px] rounded-full my-4 sm:my-6 ${
+              productDetails.status === "In Stock"
+                ? "bg-green-300/20 border-green-500 text-green-500"
+                : "bg-red-300/20 border-red-500 text-red-500"
+            }`}
           >
             {productDetails.status}
           </p>
 
-          {/* Product Description */}
-          <p className="text-[15px] tracking-[1px] my-10 text-slate-600">
+          {/* description */}
+          <p className="text-[13px] sm:text-[15px] tracking-[1px] my-6 sm:my-10 text-slate-600">
             {productDetails?.description?.split(".").slice(0, 2).join(".")}.
           </p>
 
-          {/* price section */}
+          {/* price */}
           <p className="font-bold mb-4">
-            <span className="mr-2 text-[35px] font-extrabold text-[#000]/90">
+            <span className="mr-2 text-[26px] sm:text-[35px] font-extrabold">
               ${Number(productDetails.price).toFixed(2)}
             </span>
-            <span className="text-slate-400/70 line-through mr-1 text-[20px]">
+            <span className="text-slate-400 line-through text-[16px] sm:text-[20px]">
               ${Number(oldPrice).toFixed(2)}
             </span>
           </p>
 
-          <div className=" py-1 tracking-[2px] border w-fit font-bold  text-[17px] px-4">
+          {/* option */}
+          <div className="py-1 tracking-[2px] border w-fit font-bold text-[14px] sm:text-[17px] px-3 sm:px-4">
             {productDetails.option}
           </div>
 
-          {/* total section */}
+          {/* total */}
           {cartItemAmount > 0 && (
-            <div className="absolute bottom-30 right-9 py-1 tracking-[2px] bordr w-fit font-bold  text-[20px] px-4">
-              Total:{" "}
-              <span className="text-[35px] font-bold ">
+            <div className="mt-5 lg:absolute lg:bottom-20 lg:right-5 text-[16px] sm:text-[20px]">
+              Total:
+              <span className="text-[24px] sm:text-[35px] font-bold ml-2">
                 ${(productDetails.price * cartItemAmount).toFixed(2)}
               </span>
             </div>
           )}
 
-          {/* calculation button section */}
-          <div className="w-[90%] flex items-center gap-5 mt-25">
-            {/* top button */}
-            <div className="w-[40%] bg-[#6a9c06]/10 rounded-full flex items-center justify-center gap-6.5 py-1 rounded-[5px] ">
+          {/* buttons */}
+          <div className="w-full flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-10 sm:mt-20">
+            {/* quantity */}
+            <div className="w-full sm:w-[40%] bg-[#6a9c06]/10 rounded-full flex items-center justify-center gap-4 py-2">
               <button
                 onClick={() => removeFromCart(id)}
-                className="border-2 text-[#6a9c06] text-[13px] h-5 w-5 rounded-full flex justify-center items-center hover:bg-[#6a9c06] hover:text-white hover:border-[#6a9c06]"
+                className="text-[#6a9c06] h-6 w-6 rounded-full flex items-center justify-center border"
               >
                 <FaMinus />
               </button>
-              <p className="text-[25px] font-semibold text-[#6a9c06]">
+
+              <p className="text-[20px] sm:text-[25px] font-semibold text-[#6a9c06]">
                 {cartItemAmount || 0}
               </p>
 
               <button
                 onClick={() => addToCart(id)}
-                className="border-2 text-[#6a9c06] text-[13px] h-5 w-5 rounded-full flex justify-center items-center hover:bg-[#6a9c06] hover:text-white hover:border-[#6a9c06]"
+                className="text-[#6a9c06] h-6 w-6 rounded-full flex items-center justify-center border"
               >
                 <FaPlus />
               </button>
             </div>
 
-            {/* cart button */}
+            {/* add to cart */}
             <div
               onClick={() => addToCart(id)}
-              className="cursor-pointer w-full bg-[#6a9c06]/80 rounded-full text-white flex items-center justify-center gap-3 py-3.5 rounded-[5px] hover:bg-[#6a9c06]"
+              className="cursor-pointer w-full bg-[#6a9c06]/80 rounded-full text-white flex items-center justify-center gap-3 py-3 hover:bg-[#6a9c06]"
             >
-              <FaShoppingBag className="text-[22px]" />
-              <p className="text-[16px] font-semibold">Add to Cart</p>
+              <FaShoppingBag className="text-[18px] sm:text-[22px]" />
+              <p className="text-[14px] sm:text-[16px] font-semibold">
+                Add to Cart
+              </p>
             </div>
           </div>
         </div>

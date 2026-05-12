@@ -1,16 +1,16 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiShoppingBag } from "react-icons/hi2";
 import { BiSolidLeaf } from "react-icons/bi";
 import { FiMenu, FiX } from "react-icons/fi";
 import ShopContext from "../context/Shop-context";
 import { NavLink } from "react-router-dom";
 const Navbar = () => {
-  const { userDetails, cartItemCount, logout } = useContext(ShopContext);
-
+  const { userDetails, token, cartItemCount, logout } = useContext(ShopContext);
+  console.log(userDetails?.username.split(" ").map((name) => name));
   const [openProfile, setOpenProfile] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
-
+  const navigate = useNavigate();
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
       <div className="flex items-center justify-between px-6 md:px-10 h-[70px]">
@@ -69,14 +69,24 @@ const Navbar = () => {
           </Link>
 
           {/* Profile */}
-          {userDetails && (
+          {!(userDetails && token) ? (
+            <button
+              onClick={() => navigate("/register")}
+              className="bg-black text-white  shadow-md hover:shadow-lg  active:scale-95 transition-all duration-200 font-bold tracking-[1px] py-2 rounded-full px-6 cursor-pointer text-[13px] hover:scale-105 duration-150 transition-all"
+            >
+              Login
+            </button>
+          ) : (
             <div className="relative">
               {/* Avatar */}
               <div
                 onClick={() => setOpenProfile(!openProfile)}
                 className="w-10 h-10 rounded-full bg-green-600 text-white flex items-center justify-center font-bold uppercase cursor-pointer"
               >
-                {(userDetails?.username || "U").charAt(0)}
+                {userDetails?.username
+                  ?.split(" ")
+                  .map((name) => name[0])
+                  .join("") || "U"}
               </div>
 
               {/* Dropdown */}
@@ -85,11 +95,14 @@ const Navbar = () => {
                   {/* USER HEADER */}
                   <div className="p-4 flex items-center gap-3">
                     <div className="w-11 h-11 rounded-full bg-gradient-to-br from-green-500 to-green-700 text-white flex items-center justify-center font-bold text-lg uppercase shadow-sm">
-                      {(userDetails?.username || "U").charAt(0)}
+                      {userDetails?.username
+                        ?.split(" ")
+                        .map((name) => name[0])
+                        .join("") || "U"}
                     </div>
 
                     <div className="min-w-0">
-                      <p className="font-semibold text-sm truncate">
+                      <p className="font-semibold text-sm truncate capitalize">
                         {userDetails?.username}
                       </p>
                       <p className="text-xs text-gray-500 truncate">
