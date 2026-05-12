@@ -92,31 +92,33 @@ const AddProduct = () => {
     }
   };
   return (
-    <div className="add w-[100%] relative p-5 pb-20 h-fit ">
+    <div className="add w-full relative p-3 sm:p-5 md:pb-20 h-fit">
       {/* header */}
-      <div className="flex items-center gap-2 mb-7">
-        <h1 className="text-[25px]  font-semibold mt-2">Add New Item</h1>
+      <div className="flex items-center gap-2 mb-5 sm:mb-7">
+        <h1 className="text-[20px] sm:text-[25px] font-semibold mt-2">
+          Add New Item
+        </h1>
       </div>
 
-      {/* content */}
+      {/* form */}
       <form
         onSubmit={onSubmitHandeler}
-        className="w-full h-screen flex gap-6 mb-30"
+        className="w-full flex flex-col lg:flex-row gap-5 lg:gap-6 mb-20 lg:mb-30"
       >
-        {/* left side */}
-        <div className="flex-2">
-          {/*general info section  */}
-          <div className="bg-gray-100/70 shadow-[1px_1px_3px_rgba(0,0,0,0.3)] rounded-2xl p-5">
-            <p className="text-[16px]  mb-3 font-semibold tracking-[1px]">
+        {/* ================= LEFT SIDE ================= */}
+        <div className="w-full lg:flex-1">
+          {/* general info */}
+          <div className="bg-gray-100/70 shadow-[1px_1px_3px_rgba(0,0,0,0.3)] rounded-2xl p-4 sm:p-5">
+            <p className="text-[15px] sm:text-[16px] mb-3 font-semibold tracking-[1px]">
               General Information
             </p>
-            {/* product  name */}
-            <div className="add-product-name space-between my-5">
-              <p className="mb-3">Product Name</p>
+
+            {/* name */}
+            <div className="my-4 sm:my-5">
+              <p className="mb-2">Product Name</p>
               <input
-                className="w-full rounded-[7px] p-5 py-2 outline-none bg-gray-200/60"
+                className="w-full rounded-[7px] p-3 sm:p-5 py-2 outline-none bg-gray-200/60"
                 type="text"
-                name="name"
                 value={data.name}
                 onChange={(e) =>
                   setData((prev) => ({ ...prev, name: e.target.value }))
@@ -125,13 +127,12 @@ const AddProduct = () => {
               />
             </div>
 
-            {/* product description */}
-            <div className="add-product-description space-between mb-5">
-              <p className="mb-3">Description</p>
+            {/* description */}
+            <div className="mb-5">
+              <p className="mb-2">Description</p>
               <textarea
-                className="w-full rounded-[7px] p-5 py-2 outline-none bg-gray-200/60"
-                type="text"
-                name="description"
+                className="w-full rounded-[7px] p-3 sm:p-5 py-2 outline-none bg-gray-200/60"
+                rows={5}
                 value={data.description}
                 onChange={(e) =>
                   setData((prev) => ({
@@ -139,16 +140,15 @@ const AddProduct = () => {
                     description: e.target.value,
                   }))
                 }
-                rows={6}
                 placeholder="Write Content Here"
-              ></textarea>
+              />
             </div>
 
-            {/* Quantity section */}
-            <div className="w-full mb-10">
+            {/* options */}
+            <div className="w-full mb-6">
               <p className="mb-3 font-medium text-gray-700">Option</p>
 
-              <div className="flex gap-3 flex-wrap">
+              <div className="flex gap-2 sm:gap-3 flex-wrap">
                 {sizes.map((size) => (
                   <div
                     key={size}
@@ -156,12 +156,11 @@ const AddProduct = () => {
                       setSelectedSize(size);
                       setData((prev) => ({ ...prev, option: size }));
                     }}
-                    className={`px-6 py-1.5 rounded-full cursor-pointer border transition-all duration-200 text-sm font-medium
-        ${
-          selectedSize === size
-            ? "bg-[#6a9c06] text-white border-[#6a9c06] shadow-md scale-105"
-            : "bg-white text-gray-700 border-gray-300 hover:border-[#6a9c06] hover:shadow-sm"
-        }`}
+                    className={`px-4 sm:px-6 py-1.5 rounded-full cursor-pointer border text-xs sm:text-sm font-medium ${
+                      selectedSize === size
+                        ? "bg-[#6a9c06] text-white border-[#6a9c06]"
+                        : "bg-white text-gray-700 border-gray-300"
+                    }`}
                   >
                     {size}
                   </div>
@@ -169,16 +168,14 @@ const AddProduct = () => {
               </div>
             </div>
 
-            {/*product Category Section */}
-            <div className="bg-gray-100/70 shadow-[1px_1px_3px_rgba(0,0,0,0.3)] rounded-2xl p-3 mt-5 w-full">
+            {/* category */}
+            <div className="mt-5">
               <p className="font-semibold">Product Category</p>
-              <p className="text-[11px] font-extralingt mb-3">
-                Pick Available Category
-              </p>
+              <p className="text-[11px] mb-2">Pick Available Category</p>
+
               <select
-                name="category"
-                className="w-full rounded-[7px] p-5 py-2 outline-none bg-gray-200/60"
-                value={data.category} // controlled select
+                className="w-full rounded-[7px] p-3 sm:p-5 py-2 outline-none bg-gray-200/60"
+                value={data.category}
                 onChange={(e) =>
                   setData((prev) => ({ ...prev, category: e.target.value }))
                 }
@@ -192,18 +189,14 @@ const AddProduct = () => {
               </select>
             </div>
 
-            {/*product status section */}
-            <div className="bg-gray-100/70 shadow-[1px_1px_3px_rgba(0,0,0,0.3)] rounded-2xl p-3 mt-5 w-full">
-              <p className="text-[16px] font-semibold tracking-[1px]">
-                Product Status
-              </p>
-              <p className="text-[11px] font-extralingt mb-3">
-                Pick Current Status
-              </p>
+            {/* status */}
+            <div className="mt-5">
+              <p className="font-semibold">Product Status</p>
+              <p className="text-[11px] mb-2">Pick Current Status</p>
+
               <select
-                name="status"
-                className="w-full rounded-[7px] p-5 py-2 outline-none bg-gray-200/60"
-                value={data.status} // controlled select
+                className="w-full rounded-[7px] p-3 sm:p-5 py-2 outline-none bg-gray-200/60"
+                value={data.status}
                 onChange={(e) =>
                   setData((prev) => ({ ...prev, status: e.target.value }))
                 }
@@ -216,101 +209,77 @@ const AddProduct = () => {
           </div>
         </div>
 
-        {/* right side */}
-        <div className="w-80">
-          {/* image section */}
-          <div className="bg-gray-100/70 shadow-[1px_1px_3px_rgba(0,0,0,0.3)] rounded-2xl p-5">
-            <p className="text-[16px]  mb-3 font-semibold tracking-[1px]">
+        {/* ================= RIGHT SIDE ================= */}
+        <div className="w-full lg:w-80 flex flex-col gap-5">
+          {/* image */}
+          <div className="bg-gray-100/70 shadow rounded-2xl p-4 sm:p-5">
+            <p className="text-[15px] sm:text-[16px] mb-3 font-semibold">
               Upload Images
             </p>
 
-            {/* top big image */}
-            <div className="w-[100%] mx-auto h-[260px] mb-2">
-              <label
-                htmlFor="image"
-                className="cursor-pointer text-black w-full h-full flex flex-col  items-center justify-center border border-dashed border-gray-500/30 rounded-xl"
-              >
-                {image ? (
-                  <img
-                    src={URL.createObjectURL(image)}
-                    alt=""
-                    className="w-full h-full object-cover rounded-xl object-top"
-                  />
-                ) : (
-                  <IoIosAddCircle className="text-[56px] text-[#6a9c06]/50 hover:text-[#6a9c06]" />
-                )}
-              </label>
-              <input
-                type="file"
-                hidden
-                id="image"
-                onChange={(e) => {
-                  setimage(e.target.files[0]);
-                }}
-              />
-            </div>
+            <label
+              htmlFor="image"
+              className="cursor-pointer w-full h-[200px] sm:h-[260px] flex items-center justify-center border border-dashed border-gray-500/30 rounded-xl"
+            >
+              {image ? (
+                <img
+                  src={URL.createObjectURL(image)}
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              ) : (
+                <IoIosAddCircle className="text-[45px] sm:text-[56px] text-[#6a9c06]/50" />
+              )}
+            </label>
+
+            <input
+              type="file"
+              hidden
+              id="image"
+              onChange={(e) => setimage(e.target.files[0])}
+            />
           </div>
 
-          {/*Pricing section */}
-          <div className="bg-gray-100/70 shadow-[1px_1px_3px_rgba(0,0,0,0.3)] rounded-2xl p-5 mt-10">
-            <p className="text-[16px]  mb-3 font-semibold tracking-[1px]">
+          {/* pricing */}
+          <div className="bg-gray-100/70 shadow rounded-2xl p-4 sm:p-5">
+            <p className="text-[15px] sm:text-[16px] mb-3 font-semibold">
               Pricing and Stock
             </p>
-            {/* price */}
-            <div className="add-product-description space-between mb-5">
-              <p className="text-[13px] mb-1">Price</p>
-              <input
-                type="text"
-                name="price"
-                value={data.price}
-                onChange={(e) =>
-                  setData((prev) => ({ ...prev, price: e.target.value }))
-                }
-                placeholder="Enter Price"
-                className="w-full rounded-[7px] p-5 py-1 text-[14px] outline-none bg-gray-200/60"
-              />
-            </div>
 
-            {/* discount */}
-            <div className="add-product-description space-between mb-5">
-              <p className="text-[13px] mb-1">Discount</p>
-              <input
-                type="text"
-                name="discount"
-                value={data.discount}
-                onChange={(e) =>
-                  setData((prev) => ({ ...prev, discount: e.target.value }))
-                }
-                placeholder="Enter Discount"
-                className="w-full rounded-[7px] p-5 py-1 text-[14px] outline-none bg-gray-200/60"
-              />
-            </div>
+            <input
+              className="w-full mb-3 rounded bg-gray-200/60 p-2"
+              placeholder="Price"
+              value={data.price}
+              onChange={(e) =>
+                setData((prev) => ({ ...prev, price: e.target.value }))
+              }
+            />
 
-            {/* Stock */}
-            <div className="add-product-description space-between mb-5">
-              <p className="text-[13px] mb-1">Stock</p>
-              <input
-                type="text"
-                name="stock"
-                value={data.stock}
-                onChange={(e) =>
-                  setData((prev) => ({ ...prev, stock: e.target.value }))
-                }
-                placeholder="Enter Stock"
-                className="w-full rounded-[7px] p-5 py-1 text-[14px] outline-none bg-gray-200/60"
-              />
-            </div>
+            <input
+              className="w-full mb-3 rounded bg-gray-200/60 p-2"
+              placeholder="Discount"
+              value={data.discount}
+              onChange={(e) =>
+                setData((prev) => ({ ...prev, discount: e.target.value }))
+              }
+            />
+
+            <input
+              className="w-full rounded bg-gray-200/60 p-2"
+              placeholder="Stock"
+              value={data.stock}
+              onChange={(e) =>
+                setData((prev) => ({ ...prev, stock: e.target.value }))
+              }
+            />
           </div>
 
-          {/* Add Button */}
-          <div className="mx-auto flex items-center justify-center mt-8 ">
-            <button
-              className="rounded-full w-[80%] text-white bg-[#6a9c06] b p-3 tracking-[1px] text-[16px] font-bold hover:bg-black hover:text-white cursor-pointer duration-200 hover:-translate-y-1"
-              type="submit"
-            >
-              Add Product
-            </button>
-          </div>
+          {/* button */}
+          <button
+            type="submit"
+            className="w-full bg-[#6a9c06] text-white py-3 rounded-full font-bold hover:bg-black transition"
+          >
+            Add Product
+          </button>
         </div>
       </form>
     </div>

@@ -3,9 +3,12 @@ import { Outlet } from "react-router-dom";
 import ShopContext from "../../context/Shop-context";
 import { BiSolidLeaf } from "react-icons/bi";
 import Sidebar from "../../Components/admin/Sidebar";
+import { FaBars } from "react-icons/fa";
 
 const Layout = () => {
   const { navigate, logout } = useContext(ShopContext);
+  const { setOpen } = useContext(ShopContext);
+
   // const { setToken, axios, navigate } = useContext(ShopContext);
   // const logout = () => {
   //   localStorage.removeItem("token");
@@ -24,12 +27,22 @@ const Layout = () => {
           <h1 className="text-[20px] font-bold">FRESHMET</h1>
           <BiSolidLeaf className="absolute top-[0%] -right-6 text-[30px] rotate-20 text-green-600" />
         </div>
-        <button
-          onClick={logout}
-          className="bg-black text-white font-semibold tracking-[1px] py-2 rounded-full px-4 text-[13px] hover:scale-105 duration-150 transition-all"
-        >
-          Logout
-        </button>
+
+        <div className="flex items-center gap-1">
+          <button
+            onClick={logout}
+            className="bg-black text-white font-semibold tracking-[1px] py-2 rounded-full px-4 text-[13px] hover:scale-105 duration-150 transition-all"
+          >
+            Logout
+          </button>
+
+          {/* ================= MOBILE TOP BAR ================= */}
+          <div className="md:hidden flex items-center p-3 ">
+            <button onClick={() => setOpen(true)}>
+              <FaBars size={22} />
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className="flex h-[calc(100vh-70px)]">

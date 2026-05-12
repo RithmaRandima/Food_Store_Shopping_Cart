@@ -75,7 +75,7 @@ const ProductListItem = ({ item }) => {
       </div>
 
       {/* info section */}
-      <div className="flex-1 relative">
+      <div className="mt-4 md:mt-0 flex-1 relative">
         <p className="text-[22px] font-bold tracking-[1px]">{item.name}</p>
         <p
           className={`text-[8px] bg-green-300 w-fit px-2 py-0.5 mt-1 text-black uppercase font-semibold tracking-[1px] mb-3  ${categoryColors[item.category] || "bg-gray-200"}`}
@@ -84,7 +84,7 @@ const ProductListItem = ({ item }) => {
         </p>
 
         {/* price section */}
-        <p className="text-[30px] font-bold text-green-500 mt-7">
+        <p className="text-[22px] md:text-[30px] font-bold text-green-500 mt-7">
           ${Number(item.price).toFixed(2)}
         </p>
       </div>

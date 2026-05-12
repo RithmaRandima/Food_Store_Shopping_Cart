@@ -12,6 +12,7 @@ export const ShopContextProvider = (props) => {
   const [userDetails, setUserDetails] = useState(null); // ✅ fixed typo
   const [token, setToken] = useState(null);
   const [defaultCart, setDefaultCart] = useState([]);
+  const [open, setOpen] = useState(false);
 
   // ✅ Load data from localStorage when app starts
   useEffect(() => {
@@ -147,6 +148,8 @@ export const ShopContextProvider = (props) => {
     token,
     userDetails,
     cartItems,
+    open,
+    setOpen,
     navigate,
     setUserDetails, // ✅ fixed
     setToken,
