@@ -4,11 +4,9 @@ import { IoIosAddCircle } from "react-icons/io";
 import axios from "axios";
 import { RiStickyNoteAddFill } from "react-icons/ri";
 import toast from "react-hot-toast";
-import { useContext } from "react";
 import ShopContext from "../../context/Shop-context";
 
 const AddProduct = () => {
-  const { navigate } = useContext(ShopContext);
   const sizes = ["500g", "1kg", "1 Pack", "1 Item", "1 Bottle"];
   const [selectedSize, setSelectedSize] = useState("");
 

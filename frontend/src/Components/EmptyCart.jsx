@@ -16,7 +16,7 @@ const EmptyCart = () => {
       <button
         className="my-7 bg-[#6a9c06] text-[17px] text-white btn-primary border-0  p-2 px-10 cursor-pointer"
         onClick={() => {
-          navigate("/home");
+          navigate("/");
         }}
       >
         Return to Shop

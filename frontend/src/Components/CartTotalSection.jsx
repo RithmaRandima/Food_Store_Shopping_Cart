@@ -93,7 +93,7 @@ const CartTotalSection = () => {
           <button
             className="mt-10 mx-auto block bg-green-600 text-[17px] text-white btn-primary border-0  p-2 px-30 cursor-pointer"
             onClick={() => {
-              navigate("/home");
+              navigate("/");
             }}
           >
             Checkout

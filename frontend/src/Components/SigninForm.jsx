@@ -42,7 +42,7 @@ const SigninForm = ({ switchToSignin, popup, setPopup }) => {
         setUserDetails(response.data.user);
 
         // ✅ redirect
-        navigate("/home");
+        navigate("/");
       } else {
         toast.error(response.data?.message || "Login failed");
       }

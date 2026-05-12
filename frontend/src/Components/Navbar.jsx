@@ -7,7 +7,6 @@ import ShopContext from "../context/Shop-context";
 import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const { userDetails, token, cartItemCount, logout } = useContext(ShopContext);
-  console.log(userDetails?.username.split(" ").map((name) => name));
   const [openProfile, setOpenProfile] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const navigate = useNavigate();
@@ -23,7 +22,7 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8 font-medium text-gray-700">
           <NavLink
-            to="/home"
+            to="/"
             className={({ isActive }) =>
               `relative pb-1 transition hover:text-green-600 
       after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-green-600 after:transition-all
@@ -132,7 +131,8 @@ const Navbar = () => {
 
                     {/* Orders */}
                     <Link
-                      to="/orders"
+                      // need to create page
+                      to="/"
                       onClick={() => setOpenProfile(false)}
                       className="group flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-50 transition"
                     >
@@ -178,7 +178,7 @@ const Navbar = () => {
       {mobileMenu && (
         <div className="md:hidden px-6 pb-4 flex flex-col gap-3 text-gray-700 font-medium">
           <NavLink
-            to="/home"
+            to="/"
             onClick={() => setMobileMenu(false)}
             className={({ isActive }) =>
               isActive ? "text-green-600 underline" : "hover:text-green-600"

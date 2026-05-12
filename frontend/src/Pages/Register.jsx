@@ -22,7 +22,7 @@ const Register = () => {
   return (
     <div className="w-full flex h-[100vh] overflow-hidden  bg-[#6a9c06] relative">
       <Link
-        to="/home"
+        to="/"
         className="absolute right-5 top-5 flex items-center gap-2 z-30 bg-white hover:text-white hover:bg-black font-bold tracking-[1px] py-2 rounded-full px-4 text-[13px] hover:scale-105 duration-150 transition-all"
       >
         <FaArrowLeft /> Home

@@ -30,7 +30,7 @@ const Sidebar = () => {
           {/* logo */}
           <div
             className="relative cursor-pointer flex items-center gap-2"
-            onClick={() => navigate("/home")}
+            onClick={() => navigate("/")}
           >
             <h1 className="text-[18px] font-extrabold tracking-wide">
               FRESHMET

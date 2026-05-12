@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import Cart from "./Pages/Cart";
 import "./App.css";
 import Home from "./Pages/Home";
-import { ShopContextProvider } from "./context/Shop-context";
+import ShopContext from "./context/Shop-context";
 import Splash from "./Pages/Splash";
 import Register from "./Pages/Register";
 import Layout from "./Pages/admin/Layout";
@@ -16,34 +16,35 @@ import ProductDetails from "./Pages/ProductDetails";
 import CommentsList from "./Pages/admin/CommentsList";
 
 const App = () => {
-  const navigate = useNavigate();
+  const { appLoading } = useContext(ShopContext);
+  const [minSplashDone, setMinSplashDone] = React.useState(false);
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/home");
-    }, 1300);
+      setMinSplashDone(true);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
 
+  if (appLoading || !minSplashDone) return <Splash />;
+
   return (
     <div>
-      <ShopContextProvider>
-        <Routes>
-          <Route path="/" element={<Splash />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<ProductDetails />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/admin" element={<Layout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="addProduct" element={<AddProduct />} />
-            <Route path="productList" element={<ProductList />} />
-            <Route path="comments" element={<CommentsList />} />
-          </Route>
-        </Routes>
-      </ShopContextProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/admin" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="addProduct" element={<AddProduct />} />
+          <Route path="productList" element={<ProductList />} />
+          <Route path="comments" element={<CommentsList />} />
+        </Route>
+      </Routes>
     </div>
   );
 };

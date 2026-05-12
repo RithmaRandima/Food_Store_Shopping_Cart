@@ -20,10 +20,7 @@ const Layout = () => {
     <>
       <div className="flex items-center justify-between py-2 h-[70px] px-4 sm:px-12 border-b border-gray-200">
         {/* logo */}
-        <div
-          className="relative cursor-pointer"
-          onClick={() => navigate("/home")}
-        >
+        <div className="relative cursor-pointer" onClick={() => navigate("/")}>
           <h1 className="text-[20px] font-bold">FRESHMET</h1>
           <BiSolidLeaf className="absolute top-[0%] -right-6 text-[30px] rotate-20 text-green-600" />
         </div>

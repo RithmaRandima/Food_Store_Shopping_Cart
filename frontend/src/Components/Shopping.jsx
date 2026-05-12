@@ -83,7 +83,7 @@ const Shopping = () => {
             .map((item, index) => ({ ...item, index })) // add index
             .filter((_, idx) => idx < 8) // limit to first 8
             .map((item) => (
-              <ItemCard key={item.id} item={item} />
+              <ItemCard key={item._id} item={item} />
             ))}
         </div>
 

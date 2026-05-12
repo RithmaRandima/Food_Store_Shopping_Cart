@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect, use } from "react";
-import { itemList } from "../assets/ItemsData";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -13,7 +12,7 @@ export const ShopContextProvider = (props) => {
   const [token, setToken] = useState(null);
   const [defaultCart, setDefaultCart] = useState([]);
   const [open, setOpen] = useState(false);
-
+  const [appLoading, setAppLoading] = useState(true);
   // ✅ Load data from localStorage when app starts
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -50,19 +49,20 @@ export const ShopContextProvider = (props) => {
         const { data } = await axios.get(
           "http://localhost:5001/api/product/all-products",
         );
+
         if (data.success) {
           setDefaultCart(data.products);
         } else {
           toast.error("Failed to Load Data For Default Cart");
         }
       } catch (error) {
-        console.error(
-          "Error on fetchDefaultCart function on Shop-Context",
-          error,
-        );
+        console.error("Error on fetchDefaultCart function", error);
         toast.error("Something went wrong while fetching products");
+      } finally {
+        setAppLoading(false); // 👈 IMPORTANT
       }
     };
+
     fetchDefaultCart();
   }, []);
 
@@ -139,7 +139,7 @@ export const ShopContextProvider = (props) => {
     setUserDetails(null);
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    navigate("/home");
+    navigate("/");
   };
 
   const contextValue = {
@@ -149,6 +149,7 @@ export const ShopContextProvider = (props) => {
     userDetails,
     cartItems,
     open,
+    appLoading,
     setOpen,
     navigate,
     setUserDetails, // ✅ fixed
